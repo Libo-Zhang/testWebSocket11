@@ -41,6 +41,7 @@
 		12EA22071C9A877B00CB1E0E /* HT_FPlayNearConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA22061C9A877B00CB1E0E /* HT_FPlayNearConnect.m */; };
 		12EA220A1C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA22091C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m */; };
 		12EA220D1C9AA91300CB1E0E /* HT_NearDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */; };
+		D80E65401C9C3E0800976E7D /* HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = D80E653F1C9C3E0800976E7D /* HTTP.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +110,8 @@
 		12EA22091C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayRemoteConnect.m; sourceTree = "<group>"; };
 		12EA220B1C9AA91300CB1E0E /* HT_NearDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_NearDetailVC.h; sourceTree = "<group>"; };
 		12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_NearDetailVC.m; sourceTree = "<group>"; };
+		D80E653E1C9C3E0800976E7D /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
+		D80E653F1C9C3E0800976E7D /* HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTP.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,6 +182,8 @@
 				1267AD431C96A40A008B57A5 /* LaunchScreen.storyboard */,
 				1267AD461C96A40A008B57A5 /* Info.plist */,
 				1267AD351C96A40A008B57A5 /* Supporting Files */,
+				D80E653E1C9C3E0800976E7D /* HTTP.h */,
+				D80E653F1C9C3E0800976E7D /* HTTP.m */,
 			);
 			path = testWebSocket;
 			sourceTree = "<group>";
@@ -350,6 +355,7 @@
 				1267AD631C96A46D008B57A5 /* AFNetworkReachabilityManager.m in Sources */,
 				12EA220D1C9AA91300CB1E0E /* HT_NearDetailVC.m in Sources */,
 				1267AD671C96A46D008B57A5 /* AFURLResponseSerialization.m in Sources */,
+				D80E65401C9C3E0800976E7D /* HTTP.m in Sources */,
 				1271F6171C9BB41D00695B1B /* HT_FPlayResModel.m in Sources */,
 				12E363BF1C99451300A1BCBE /* GCDAsyncSocket.m in Sources */,
 				12EA22071C9A877B00CB1E0E /* HT_FPlayNearConnect.m in Sources */,

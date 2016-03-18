@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "124C3D8B54D562C4F56A64A1996215D4D3CD01CA",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "124C3D8B54D562C4F56A64A1996215D4D3CD01CA" : 0,
+    "F5F69B81E3491CCB124ECF09CDD071F63B035310" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "147271F1-845D-44C6-B4B0-BADEA4843825",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "124C3D8B54D562C4F56A64A1996215D4D3CD01CA" : "testWebSocket11\/",
+    "F5F69B81E3491CCB124ECF09CDD071F63B035310" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "testWebSocket",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "testWebSocket.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Libo-Zhang\/testWebSocket11.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "124C3D8B54D562C4F56A64A1996215D4D3CD01CA"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Libo-Zhang\/testWebSocket.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F5F69B81E3491CCB124ECF09CDD071F63B035310"
+    }
+  ]
+}

@@ -76,7 +76,8 @@ static HT_FPlayManager *instance;
 //    NSLog(@"Open it~!!!!!");
 //}
 //// 获取当前用户下的所有设备
--(void)getUserdeviceget{
+-(void)getUserdevicegetWithSuccess:(void (^)(id response))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError{
+
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -89,16 +90,20 @@ static HT_FPlayManager *instance;
         if ([responseObject[@"ret"] integerValue]== 0) {
             
             weakself.remoteDeviceList =  [weakself praseDevice: responseObject[@"devices"]];
+            if (weakself.currentDevice == nil) {
+                weakself.currentDevice = weakself.remoteDeviceList.firstObject;
+            }
             NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
+            success(responseObject);
             //获得新的列表   通过block返回
             // self.devideUpdateblocks(self.mDeviceList);
-            
-            
+        }else{
+            failer(responseObject);
         }
-
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error){
               NSLog(@"Error: %@", error);
+              somethingError(error);
           }];
 }
 ////解析数据
@@ -111,7 +116,7 @@ static HT_FPlayManager *instance;
         device.UID = [fromDeVidString integerValue];
         [mutableArr addObject:device];
         NSLog(@"got it");
-        [HT_FPlayManager getInsnstance].currentDevice = device;
+       //[HT_FPlayManager getInsnstance].currentDevice = device;
     }
     
     return mutableArr;

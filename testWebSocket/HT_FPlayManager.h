@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSMutableArray *mDeviceList;
 @property (nonatomic, strong) NSMutableArray *remoteDeviceList;
 -(void)createNearUdpSocket;
--(void)getUserdeviceget;
+-(void)getUserdevicegetWithSuccess:(void (^)(id response))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
 
 @property (nonatomic, strong) HT_FPlayDevice *currentDevice;
 

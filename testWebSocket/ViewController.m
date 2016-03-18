@@ -42,7 +42,7 @@
         NSLog(@"登录api的返回请求状态值%ld",[responseObject[@"ret"] integerValue]);
         if([responseObject[@"ret"] integerValue] == 0){
             [self saveLoginCookie];
-            [[HT_FPlayManager getInsnstance] getUserdeviceget];
+            //[[HT_FPlayManager getInsnstance] getUserdeviceget];
         }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
