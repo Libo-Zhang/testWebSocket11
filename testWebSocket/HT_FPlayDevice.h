@@ -37,9 +37,9 @@
  
  */
 #import <Foundation/Foundation.h>
-#import "SRWebSocket.h"
-#import "GCDAsyncSocket.h"
+
 #import "HT_FPlayNearConnect.h"
+#import "HT_FPlayRemoteConnect.h"
 @interface HT_FPlayDevice : NSObject
 //--设备属性
 @property (nonatomic, assign) NSInteger DID;       //音响设备did(to)
@@ -53,7 +53,7 @@
 @property (nonatomic, strong) NSString *bindtime;
 
 
-@property (nonatomic, strong) SRWebSocket *connect_remote; //设备的连接 － 互联网
+@property (nonatomic, strong) HT_FPlayRemoteConnect *connect_remote; //设备的连接 － 互联网
 @property (nonatomic, strong) HT_FPlayNearConnect *connect_near;
 @property (nonatomic, assign) NSInteger UID;       //手机uid(from)
 

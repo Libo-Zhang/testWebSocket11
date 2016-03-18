@@ -13,6 +13,8 @@
 +(instancetype)getInsnstance;
 //设备列表
 @property (nonatomic, strong) NSMutableArray *mDeviceList;
-
+@property (nonatomic, strong) NSMutableArray *remoteDeviceList;
 -(void)createNearUdpSocket;
+
+-(void)getUserdeviceget;
 @end

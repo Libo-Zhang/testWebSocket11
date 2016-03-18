@@ -35,6 +35,7 @@ static HT_FPlayManager *instance;
         //打开webSocket
          //[instance start];
           instance.mDeviceList = [NSMutableArray array];
+        instance.remoteDeviceList = [NSMutableArray array];
          //[instance getUserdeviceget];
     });
     return instance;
@@ -44,28 +45,17 @@ static HT_FPlayManager *instance;
     [self.nearConnect createUdpSocket];
 
 }
-//-(void)createNearUdpSocket:(void (^)(NSString *message))nearUpdateBlockInManager{
-//    self.nearConnect = [HT_FPlayNearConnect new];
-//    [self.nearConnect createUdpSocket];
-//    //实现这个block 让它知道我可以去刷新了
-//    self.nearConnect.nearUpdateDeviceBlock = ^(NSString *str){
-//        nearUpdateBlockInManager(@"可以去刷新了,亲~~~");
-//    };
-//}
+
 - (void)connectToNearDevice:(NSString *)address onPort:(NSInteger)port{
     self.nearConnect = [HT_FPlayNearConnect new];
     [self.nearConnect connectToDevice:address onPort:port];
 }
-//-(void)createNearUdpSocket{
-//  
-//   
-//    
-//}
+
 
 //-(void)start{
 //     self.webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://www.itinga.cn:9001/mpp/command.cmd"]]];
 //    //ws://192.168.1.200:9001/mpp/command.cmd
-//    //
+//    //ws://www.itinga.cn:9001/mpp/command.cmd
 //    //ws://115.29.193.48:8088
 //        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
 //    //对取出的cookie进行反归档处理
@@ -86,47 +76,40 @@ static HT_FPlayManager *instance;
 //    NSLog(@"Open it~!!!!!");
 //}
 //// 获取当前用户下的所有设备
-//-(void)getUserdeviceget{
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-//    
-//    NSString *url = [NSString stringWithFormat:@"%@/api/userdeviceget",Address2];
-//    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        userDeviceNum = responseObject[@"cnt"];
-//        //从哪个设备发送消息
-//        fromDeVidString = [responseObject[@"userinfo"] objectForKey:@"id"];
-//        if ([responseObject[@"ret"] integerValue]== 0) {
-//            self.mDeviceList =  [self praseDevice: responseObject[@"devices"]];
-//            //获得新的列表   通过block返回
-//            self.devideUpdateblocks(self.mDeviceList);
-//        }
-//       // NSLog(@"\n%ld \n devideID%@",device.ID,device.devid);
-//       // NSLog(@"\nuserDeviceNum:%@ \nfromDeVidString:%@ \nDeviceList:%@",userDeviceNum,fromDeVidString,self.mDeviceList);
-//    }
-//          failure:^(AFHTTPRequestOperation *operation, NSError *error){
-//              NSLog(@"Error: %@", error);
-//          }];
-//}
+-(void)getUserdeviceget{
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString *url = [NSString stringWithFormat:@"%@/api/userdeviceget",Address2];
+    [manager POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        userDeviceNum = responseObject[@"cnt"];
+        //从哪个设备发送消息
+        fromDeVidString = [responseObject[@"userinfo"] objectForKey:@"id"];
+        if ([responseObject[@"ret"] integerValue]== 0) {
+           
+            self.remoteDeviceList =  [self praseDevice: responseObject[@"devices"]];
+             NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
+            //获得新的列表   通过block返回
+           // self.devideUpdateblocks(self.mDeviceList);
+        }
+       // NSLog(@"\n%ld \n devideID%@",device.ID,device.devid);
+       // NSLog(@"\nuserDeviceNum:%@ \nfromDeVidString:%@ \nDeviceList:%@",userDeviceNum,fromDeVidString,self.mDeviceList);
+    }
+          failure:^(AFHTTPRequestOperation *operation, NSError *error){
+              NSLog(@"Error: %@", error);
+          }];
+}
 ////解析数据
-//-(NSMutableArray *)praseDevice:(NSArray *)array{
-//    NSMutableArray *mutableArr = [NSMutableArray array];
-//    for (NSDictionary *dic in array) {
-//           HT_FPlayDevice *device = [HT_FPlayDevice new];
-//        [device setValuesForKeysWithDictionary:dic];
-//        device.connect_remote = self.webSocket;
-//        device.UID = [fromDeVidString integerValue];
-//        [mutableArr addObject:device];
-//    }
-//    return mutableArr;
-//}
-//
-//-(void)webSocket:(SRWebSocket *)webSocket didCloseWithCode:(NSInteger)code reason:(NSString *)reason wasClean:(BOOL)wasClean{
-//    NSLog(@"关闭了webSocke 如果不是手动关闭 就代表传参数或者cookie出现错误,\\didcloseWithCOde,%ld\n reason:%@\nwasclean:%d",code,reason,wasClean);
-//    
-//}
-//-(void)webSocket:(SRWebSocket *)webSocket didReceivePong:(NSData *)pongPayload{
-//    //NSString *str = [NSString stringEncodingForData:pongPayload encodingOptions:NSUTF8StringEncoding convertedString:nil usedLossyConversion:YES];
-//    NSLog(@"receivePong Data");
-//}
+-(NSMutableArray *)praseDevice:(NSArray *)array{
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    for (NSDictionary *dic in array) {
+           HT_FPlayDevice *device = [HT_FPlayDevice new];
+        [device setValuesForKeysWithDictionary:dic];
+        //device.connect_remote = self;
+        device.UID = [fromDeVidString integerValue];
+        [mutableArr addObject:device];
+    }
+    return mutableArr;
+}
 @end

@@ -18,6 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    //self.tableView.backgroundColor = [UIColor blueColor];
     [self setupRefresh];
    
 }
@@ -45,32 +47,27 @@
 //        self.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
 //        [self.tableView reloadData];
 //    }];
-    
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         [NSThread sleepForTimeInterval:5];
         if ([self.refreshControl isRefreshing]) {
             [self.refreshControl endRefreshing];
+            //self.refreshControl.hidden = YES;
             
             if ([HT_FPlayManager getInsnstance].mDeviceList.count == 0) {
                 NSLog(@"并没有列表");
             }else{
-                
                 for (HT_FPlayDevice *device in [HT_FPlayManager getInsnstance].mDeviceList) {
                     NSLog(@"devid:%@",device.devid);
                 }
                 self.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
                 [self.tableView reloadData];
-                
-                
             }
         }
-        
     });
     
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;

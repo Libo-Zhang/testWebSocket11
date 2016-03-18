@@ -40,9 +40,7 @@
     uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
     NSLog(@"%@:%u",ip,port);
     NSLog(@"%@",message);
-    
 //    NearConnect * connctt [];
-    
 }
 - (IBAction)btnclick:(id)sender {
     //创建clientSocket 对象
@@ -54,7 +52,7 @@
     // [self.clientSocket connectToUrl:[NSURL URLWithString:@"http://localhost:80"] withTimeout:.5 error:nil]
     //    NSData *data = [@"http://localhost:80" dataUsingEncoding:NSUTF8StringEncoding];
     
-    if(![clientSocket connectToHost:@"192.168.0.109" onPort:port error:nil]){
+    if(![clientSocket connectToHost:@"192.168.0.107" onPort:port error:nil]){
         //返回是否连接成
         NSLog(@"客户端连接失败:%@",error);
     }else{

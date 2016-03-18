@@ -9,6 +9,7 @@
 #import "HT_DetailVC.h"
 #import "HT_FPlayManager.h"
 #import "HT_FPlayDevice.h"
+#import "HT_remoteControlVC.h"
 @interface HT_DetailVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UITableView *detailTV;
 @property (nonatomic, strong) NSArray *deviceArr;
@@ -21,7 +22,7 @@
     [self loadData];
 }
 -(void)loadData{
-    self.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
+    self.deviceArr = [HT_FPlayManager getInsnstance].remoteDeviceList;
 //    [HT_FPlayManager getInsnstance].devideUpdateblocks = ^(NSArray *array){
 //        NSLog(@"something In Block%@",array);
 //        self.deviceArr = array;
@@ -50,29 +51,31 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     HT_FPlayDevice *device = self.deviceArr[indexPath.row];
-    
-//    if (device.status == 2) {
-//        NSLog(@"并没有登录");
-//        return;
-//    }
+    HT_remoteControlVC *remote = [HT_remoteControlVC new];
+    remote.device = device;
+    [self.navigationController pushViewController:remote animated:YES];
+   
     
     //NSString *str = [NSString stringWithFormat:@"devid:%@ ID:%ld",device.devid,device.ID];
+//    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
+//    [dictionary setValue:@(201) forKey:@"action"];
+//     //[dictionary setValue:@(3) forKey:@"2222"];
+//    [dictionary setValue:[NSString stringWithFormat:@"UID:%ld",device.UID] forKey:@"from"];
+//    [dictionary setValue:[NSString stringWithFormat:@"DID:%ld",device.DID] forKey:@"to"];
+//    //[dictionary setValue:@[] forKey:@"songs"];
+//    
+//    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+//    NSString *dataMessage=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+//    
+//    NSString *sendMessage = [NSString stringWithFormat:@"%ld#%@",data.length,dataMessage];
+//    NSData *sendData = [sendMessage dataUsingEncoding:NSUTF8StringEncoding];
+//    NSLog(@"%@",sendMessage);
+//    
+//   // NSLog(@"%@",sendMessage);
+//    //[device.connect_remote send:sendData];
+////    device.connect_remote sendMessage:self. WithotherParams:<#(NSArray *)#> WithUid:<#(NSInteger)#> WithDid:<#(NSInteger)#> WithSongList:<#(NSArray *)#>
+//    [device.connect_remote sendMessage:sendMessage];
+//    
     
-    NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] init];
-    [dictionary setValue:@(201) forKey:@"action"];
-     //[dictionary setValue:@(3) forKey:@"2222"];
-    [dictionary setValue:[NSString stringWithFormat:@"UID:%ld",device.UID] forKey:@"from"];
-    [dictionary setValue:[NSString stringWithFormat:@"DID:%ld",device.DID] forKey:@"to"];
-    //[dictionary setValue:@[] forKey:@"songs"];
-    
-    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *dataMessage=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
-    NSString *sendMessage = [NSString stringWithFormat:@"%ld#%@",data.length,dataMessage];
-    NSData *sendData = [sendMessage dataUsingEncoding:NSUTF8StringEncoding];
-    NSLog(@"%@",sendMessage);
-    
-   // NSLog(@"%@",sendMessage);
-    [device.connect_remote send:sendData];
 }
 @end

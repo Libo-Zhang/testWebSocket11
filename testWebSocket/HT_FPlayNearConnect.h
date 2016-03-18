@@ -14,10 +14,7 @@
 -(void)createUdpSocket;
 - (void)connectToDevice:(NSString *)address onPort:(NSInteger)port;
 
-
-
 //发送消息
 - (void)sendMessage:(NSInteger )action WithotherParams:(NSArray *)params WithSongList:(NSArray *)songsList;
-
 
 @end

@@ -31,7 +31,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     //传入的参数
-    NSDictionary *parameters = @{@"username":@"12345678",@"password":@"12345678",@"mail":@""};
+    NSDictionary *parameters = @{@"username":@"1234567",@"password":@"1234567",@"mail":@""};
 
     //你的接口地址
     NSString *a= [NSString stringWithFormat:@"%@/api/userlogin",Address2];
@@ -40,10 +40,9 @@
     [manager POST:a parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"登录api的返回请求状态值%ld",[responseObject[@"ret"] integerValue]);
-        
         if([responseObject[@"ret"] integerValue] == 0){
             [self saveLoginCookie];
-            //[[HT_FPlayManager getInsnstance] getUserdeviceget];
+            [[HT_FPlayManager getInsnstance] getUserdeviceget];
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

@@ -27,6 +27,9 @@
 		1267AD7B1C96AA1E008B57A5 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1267AD7A1C96AA1E008B57A5 /* libicucore.tbd */; };
 		1267AD821C96AB73008B57A5 /* HT_FPlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD811C96AB73008B57A5 /* HT_FPlayManager.m */; };
 		1267AD851C96BE42008B57A5 /* HT_FPlayDevice.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD841C96BE42008B57A5 /* HT_FPlayDevice.m */; };
+		1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6101C9B958400695B1B /* HT_remoteControlVC.m */; };
+		1271F6141C9BB2E400695B1B /* HT_FPlaySongsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6131C9BB2E400695B1B /* HT_FPlaySongsModel.m */; };
+		1271F6171C9BB41D00695B1B /* HT_FPlayResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6161C9BB41D00695B1B /* HT_FPlayResModel.m */; };
 		12E363B71C9944D100A1BCBE /* HT_GetUDPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */; };
 		12E363BE1C99451300A1BCBE /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 12E363B91C99451300A1BCBE /* Documentation.html */; };
 		12E363BF1C99451300A1BCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E363BB1C99451300A1BCBE /* GCDAsyncSocket.m */; };
@@ -80,6 +83,12 @@
 		1267AD811C96AB73008B57A5 /* HT_FPlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayManager.m; sourceTree = "<group>"; };
 		1267AD831C96BE42008B57A5 /* HT_FPlayDevice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_FPlayDevice.h; sourceTree = "<group>"; };
 		1267AD841C96BE42008B57A5 /* HT_FPlayDevice.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayDevice.m; sourceTree = "<group>"; };
+		1271F60F1C9B958400695B1B /* HT_remoteControlVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_remoteControlVC.h; sourceTree = "<group>"; };
+		1271F6101C9B958400695B1B /* HT_remoteControlVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_remoteControlVC.m; sourceTree = "<group>"; };
+		1271F6121C9BB2E400695B1B /* HT_FPlaySongsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_FPlaySongsModel.h; sourceTree = "<group>"; };
+		1271F6131C9BB2E400695B1B /* HT_FPlaySongsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlaySongsModel.m; sourceTree = "<group>"; };
+		1271F6151C9BB41D00695B1B /* HT_FPlayResModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_FPlayResModel.h; sourceTree = "<group>"; };
+		1271F6161C9BB41D00695B1B /* HT_FPlayResModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayResModel.m; sourceTree = "<group>"; };
 		12E363B51C9944D100A1BCBE /* HT_GetUDPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_GetUDPVC.h; sourceTree = "<group>"; };
 		12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_GetUDPVC.m; sourceTree = "<group>"; };
 		12E363B91C99451300A1BCBE /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
@@ -126,6 +135,10 @@
 				12EA22061C9A877B00CB1E0E /* HT_FPlayNearConnect.m */,
 				12EA22081C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.h */,
 				12EA22091C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m */,
+				1271F6121C9BB2E400695B1B /* HT_FPlaySongsModel.h */,
+				1271F6131C9BB2E400695B1B /* HT_FPlaySongsModel.m */,
+				1271F6151C9BB41D00695B1B /* HT_FPlayResModel.h */,
+				1271F6161C9BB41D00695B1B /* HT_FPlayResModel.m */,
 			);
 			name = HT_FPlayManager;
 			sourceTree = "<group>";
@@ -158,6 +171,8 @@
 				1267AD3C1C96A40A008B57A5 /* ViewController.m */,
 				125971EC1C97FCB8001B8E6B /* HT_DetailVC.h */,
 				125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */,
+				1271F60F1C9B958400695B1B /* HT_remoteControlVC.h */,
+				1271F6101C9B958400695B1B /* HT_remoteControlVC.m */,
 				12E363B51C9944D100A1BCBE /* HT_GetUDPVC.h */,
 				12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */,
 				1267AD3E1C96A40A008B57A5 /* Main.storyboard */,
@@ -308,10 +323,12 @@
 				12EA220A1C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m in Sources */,
 				1267AD3D1C96A40A008B57A5 /* ViewController.m in Sources */,
 				1267AD821C96AB73008B57A5 /* HT_FPlayManager.m in Sources */,
+				1271F6141C9BB2E400695B1B /* HT_FPlaySongsModel.m in Sources */,
 				1267AD611C96A46D008B57A5 /* AFHTTPRequestOperationManager.m in Sources */,
 				1267AD631C96A46D008B57A5 /* AFNetworkReachabilityManager.m in Sources */,
 				12EA220D1C9AA91300CB1E0E /* HT_NearDetailVC.m in Sources */,
 				1267AD671C96A46D008B57A5 /* AFURLResponseSerialization.m in Sources */,
+				1271F6171C9BB41D00695B1B /* HT_FPlayResModel.m in Sources */,
 				12E363BF1C99451300A1BCBE /* GCDAsyncSocket.m in Sources */,
 				12EA22071C9A877B00CB1E0E /* HT_FPlayNearConnect.m in Sources */,
 				1267AD651C96A46D008B57A5 /* AFURLConnectionOperation.m in Sources */,
@@ -320,6 +337,7 @@
 				12E363B71C9944D100A1BCBE /* HT_GetUDPVC.m in Sources */,
 				12E363C01C99451300A1BCBE /* GCDAsyncUdpSocket.m in Sources */,
 				1267AD661C96A46D008B57A5 /* AFURLRequestSerialization.m in Sources */,
+				1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */,
 				1267AD681C96A46D008B57A5 /* AFURLSessionManager.m in Sources */,
 				1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */,
 				1267AD791C96A9B9008B57A5 /* SRWebSocket.m in Sources */,

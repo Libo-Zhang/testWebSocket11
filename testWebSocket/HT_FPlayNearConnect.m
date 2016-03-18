@@ -11,19 +11,22 @@
 #import "GCDAsyncUdpSocket.h"
 #import "HT_FPlayManager.h"
 #import "HT_FPlayDevice.h"
+
+
+#import <objc/runtime.h>
 @interface HT_FPlayNearConnect ()<GCDAsyncSocketDelegate,GCDAsyncUdpSocketDelegate>
 {
     GCDAsyncUdpSocket *udpServerSocket;
     //socket 对象
     GCDAsyncSocket *clientSocket;
     NSInteger stopRefresh;
+    NSInteger flag;
 }
 @end
 @implementation HT_FPlayNearConnect
+#pragma mark udpServerSocket
 -(void)createUdpSocket{
     stopRefresh = 0;
-//    NSString *str = [NSString stringWithFormat:@"%@%d",@"My socket queue",arc4random() %1000];
-//    const char * a =[str UTF8String];
     dispatch_queue_t dQueue = dispatch_queue_create("My socket queue", NULL);
     udpServerSocket = [[GCDAsyncUdpSocket alloc ] initWithDelegate:self delegateQueue:dQueue socketQueue:nil];
     [udpServerSocket bindToPort:19210 error:nil];
@@ -37,19 +40,15 @@
     //NSString *ip = [GCDAsyncUdpSocket hostFromAddress:address];
     //uint16_t port = [GCDAsyncUdpSocket portFromAddress:address];
 //    NSLog(@"%@:%u",ip,port);
-//     NSLog(@"%@",message);
+     // NSLog(@"%@",message);
     [self praseReciveMessage:message fromAddress:address];
 }
 -(void)praseReciveMessage:(NSString *)message fromAddress:(NSData *)address{
    
-//  hitinga$00:32:10:00:a2:01$19211$HT100-89029$18$111
-    if (stopRefresh == 5) {
+//hitinga$00:32:10:00:a2:01$19211$HT100-89029$18$111
+    if (stopRefresh == 8) {
         NSLog(@"停止寻找设备");
         [udpServerSocket close];
-        //udpServerSocket.delegate = nil;
-        //udpServerSocket = nil;
-        //刷新界面
-        //self.nearUpdateDeviceBlock(@"刷新了设备");
         return;
     }
     NSArray *array = [message componentsSeparatedByString:@"$"];
@@ -82,17 +81,18 @@
             return NO;
         }
     }
-    
     return YES;
-    
 }
+#pragma mark - GCDAsyncSocket;
 //监听和服务器的连接成功(socket 洞打通)
--(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port
-{
+-(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port{
     NSLog(@"连接成功,可以发送消息");
     //[sendmsg 801];
     //执行接收数据(等待接收服务器的数据)
-    [clientSocket readDataWithTimeout:-1 tag:10];
+    //[clientSocket readDataWithTimeout:-1 tag:10];
+    //[clientSocket readDataToLength:10 withTimeout:5 tag:1];
+    //clientSocket read
+   [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
 }
 //监听是否发送成功
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
@@ -102,27 +102,44 @@
 //监听有服务区端发送来的消息
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    
+    
+    
     //data.bytes
-    NSString *message = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSMutableString *message = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     _nearReturnMessageBlock(message);
+    
+    if ([message isEqualToString:@"#"]) {
+        if (flag == 0) {
+            flag = 1;
+            [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+        }
+        //[clientSocket readDataToLength:1 withTimeout:-1 tag:0];
+    }else  if (flag == 1) {
+        NSString *str = [message substringToIndex:message.length - 1];
+        NSLog(@"%@",str);
+        [clientSocket readDataToLength:[str integerValue]  withTimeout:-1 tag:0];
+        flag = 2;
+    }else if(flag == 2){
+        [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
+        flag = 0;
+    }
+//    if(flag == 1){
+//        [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+//    }
     // self.showTextView.text = [NSString stringWithFormat:@"%@%@\n",self.showTextView.text,message];
    // NSLog(@"%@ tag:%ld",message,tag);
     //   [clientSocket writeData:data withTimeout:-1 tag:0];
-    [clientSocket readDataWithTimeout:-1 tag:10];
-//    [clientSocket readDataToLength:5 withTimeout:1 tag:0];
+   // [clientSocket readDataWithTimeout:-1 tag:10];
+    //[clientSocket readDataToLength:5 withTimeout:1 tag:0];
 }
-//- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
-//    NSLog(@"~~~~~!!!!%ld",partialLength);
-//}
+- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
+    NSLog(@"~~~~~!!!!%ld",partialLength);
+}
 
 -(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
     NSLog(@"!~~~~~~~error%@",err);
 }
-
-- (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag {
-    NSLog(@"Received bytes: %zd",partialLength);
-}
-
 - (void)connectToDevice:(NSString *)address onPort:(NSInteger)port {
     //创建clientSocket 对象
     clientSocket = [[GCDAsyncSocket alloc] initWithDelegate:self delegateQueue:dispatch_get_main_queue()];
@@ -139,44 +156,45 @@
         NSLog(@"正在连接");
     }
 }
-
-
 - (void)sendMessage:(NSInteger )action WithotherParams:(NSArray *)params WithSongList:(NSArray *)songsList{
     //NSDictionary *dictionary = @{@"action" : @(action)};
     NSMutableDictionary *mudictioanry = [NSMutableDictionary dictionary];;
     [mudictioanry setObject:@(action) forKey:@"action"];
-    
+    flag = 0;
+     // NSLog(@"~~~~%@",[self idFromObject:songsList]);
     switch (action) {
         case 0://点歌 需要用到
-            
+            [mudictioanry setObject:songsList forKey:@"songs"];
             break;
-        case 6:
+        case 6://音量
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"volume"];
 
             break;
-        case 7:
+        case 7://seek
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"position"];
             
             break;
-        case 8:
+        case 8://设置播放模式
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"playmode"];
             
             break;
-        case 9:
+        case 9://播放当前列表中的某一个媒体
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"idx"];
             
             break;
         default:
             break;
     }
-    
-    
+  
+   // NSDictionary *dic = @{@"pubtime":@"0000-00-00"};
+   //NSString *dicstr = @"{pubtime: "0000-00-00",id: 3390, res: [{duration: 197,filesize: 4720318,fmt: "mp3",quality: 0,lrc: "http://musicdata.baidu.com/data2/lrc/65644956/01%2E%E9%BB%84%E9%87%91%E7%94%B2%28%E7%BD%91%E7%BB%9C%E7%89%88%29.lrc",bitrate: 192,url: "http://www.hitinga.com/get/playUrl?ws=3&so=3390&rid=28403"}],name: "01.黄金甲(网络版)",compose: "",singer: "周杰伦",language: "",posters: "http://a.hiphotos.baidu.com/ting/pic/item/024f78f0f736afc320f09770b119ebc4b7451222.jpg"}"
+    //NSData *data = [mudictioanry d]
     NSData *data=[NSJSONSerialization dataWithJSONObject:mudictioanry options:NSJSONWritingPrettyPrinted error:nil];
     NSString *dataMessage=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
     //前提是连接成功
     //发送消息到服务器端
-    //NSData *data = [@"123456" dataUsingEncoding:NSUTF8StringEncoding];
-    //NSInteger action = [self.textField.text integerValue];
+//NSData *data = [@"123456" dataUsingEncoding:NSUTF8StringEncoding];
+//NSInteger action = [self.textField.text integerValue];
 //    NSDictionary *dictionary = @{@"action" : @(action)};
 //    //    [dictionary setValue:@(803) forKey:@"action"];
 //    //    //[dictionary setValue:@(3) forKey:@"2222"];
@@ -198,7 +216,97 @@
     
 }
 
-
-
+//- (NSDictionary *)dictionaryFromModel
+//{
+//    unsigned int count = 0;
+//    
+//    objc_property_t *properties = class_copyPropertyList([self class], &count);
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithCapacity:count];
+//    
+//    for (int i = 0; i < count; i++) {
+//        NSString *key = [NSString stringWithUTF8String:property_getName(properties[i])];
+//        id value = [self valueForKey:key];
+//        
+//        //only add it to dictionary if it is not nil
+//        if (key && value) {
+//            if ([value isKindOfClass:[NSString class]]
+//                || [value isKindOfClass:[NSNumber class]]) {
+//                // 普通类型的直接变成字典的值
+//                [dict setObject:value forKey:key];
+//            }
+//            else if ([value isKindOfClass:[NSArray class]]
+//                     || [value isKindOfClass:[NSDictionary class]]) {
+//                // 数组类型或字典类型
+//                [dict setObject:[self idFromObject:value] forKey:key];
+//            }
+//            else {
+//                // 如果model里有其他自定义模型，则递归将其转换为字典
+//                [dict setObject:[value dictionaryFromModel] forKey:key];
+//            }
+//        } else if (key && value == nil) {
+//            // 如果当前对象该值为空，设为nil。在字典中直接加nil会抛异常，需要加NSNull对象
+//            [dict setObject:[NSNull null] forKey:key];
+//        }
+//    }
+//    
+//    free(properties);
+//    return dict;
+//}
+//
+//- (id)idFromObject:(nonnull id)object
+//{
+//    if ([object isKindOfClass:[NSArray class]]) {
+//        if (object != nil && [object count] > 0) {
+//            NSMutableArray *array = [NSMutableArray array];
+//            for (id obj in object) {
+//                // 基本类型直接添加
+//                if ([obj isKindOfClass:[NSString class]]
+//                    || [obj isKindOfClass:[NSNumber class]]) {
+//                    [array addObject:obj];
+//                }
+//                // 字典或数组需递归处理
+//                else if ([obj isKindOfClass:[NSDictionary class]]
+//                         || [obj isKindOfClass:[NSArray class]]) {
+//                    [array addObject:[self idFromObject:obj]];
+//                }
+//                // model转化为字典
+//                else {
+//                    [array addObject:[obj dictionaryFromModel]];
+//                }
+//            }
+//            return array;
+//        }
+//        else {
+//            return object ? : [NSNull null];
+//        }
+//    }
+//    else if ([object isKindOfClass:[NSDictionary class]]) {
+//        if (object && [[object allKeys] count] > 0) {
+//            NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+//            for (NSString *key in [object allKeys]) {
+//                // 基本类型直接添加
+//                if ([object[key] isKindOfClass:[NSNumber class]]
+//                    || [object[key] isKindOfClass:[NSString class]]) {
+//                    [dic setObject:object[key] forKey:key];
+//                }
+//                // 字典或数组需递归处理
+//                else if ([object[key] isKindOfClass:[NSArray class]]
+//                         || [object[key] isKindOfClass:[NSDictionary class]]) {
+//                    [dic setObject:[self idFromObject:object[key]] forKey:key];
+//                }
+//                // model转化为字典
+//                else {
+//                    [dic setObject:[object[key] dictionaryFromModel] forKey:key];
+//                }
+//            }
+//            return dic;
+//        }
+//        else {
+//            return object ? : [NSNull null];
+//        }
+//    }
+//    
+//    return [NSNull null];
+//}
 
 @end
