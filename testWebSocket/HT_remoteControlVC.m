@@ -38,11 +38,10 @@
 
         NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
         NSString *dataMessage=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    
-    
+   
         //NSString *sendMessage = [NSString stringWithFormat:@"%ld#%@",data.length,dataMessage];
         //NSData *sendData = [sendMessage dataUsingEncoding:NSUTF8StringEncoding];
-        NSLog(@"~~~~~~~~~%@~~~~~~~~~~~~",dataMessage);
+        NSLog(@"~~~~~~~~%@~~~~~~~~~~",dataMessage);
        [self.device.connect_remote sendMessage:dataMessage];
 }
 - (void)didReceiveMemoryWarning {

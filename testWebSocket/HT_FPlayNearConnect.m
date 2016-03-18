@@ -87,12 +87,11 @@
 //监听和服务器的连接成功(socket 洞打通)
 -(void)socket:(GCDAsyncSocket *)sock didConnectToHost:(NSString *)host port:(uint16_t)port{
     NSLog(@"连接成功,可以发送消息");
-    //[sendmsg 801];
+    
     //执行接收数据(等待接收服务器的数据)
     //[clientSocket readDataWithTimeout:-1 tag:10];
-    //[clientSocket readDataToLength:10 withTimeout:5 tag:1];
-    //clientSocket read
-   [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
+ 
+     [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
 }
 //监听是否发送成功
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
@@ -102,13 +101,9 @@
 //监听有服务区端发送来的消息
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    
-    
-    
     //data.bytes
     NSMutableString *message = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    _nearReturnMessageBlock(message);
-    
+   
     if ([message isEqualToString:@"#"]) {
         if (flag == 0) {
             flag = 1;
@@ -121,12 +116,11 @@
         [clientSocket readDataToLength:[str integerValue]  withTimeout:-1 tag:0];
         flag = 2;
     }else if(flag == 2){
+         _nearReturnMessageBlock(message);
         [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
         flag = 0;
     }
-//    if(flag == 1){
-//        [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-//    }
+
     // self.showTextView.text = [NSString stringWithFormat:@"%@%@\n",self.showTextView.text,message];
    // NSLog(@"%@ tag:%ld",message,tag);
     //   [clientSocket writeData:data withTimeout:-1 tag:0];

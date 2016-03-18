@@ -30,6 +30,7 @@
 		1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6101C9B958400695B1B /* HT_remoteControlVC.m */; };
 		1271F6141C9BB2E400695B1B /* HT_FPlaySongsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6131C9BB2E400695B1B /* HT_FPlaySongsModel.m */; };
 		1271F6171C9BB41D00695B1B /* HT_FPlayResModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F6161C9BB41D00695B1B /* HT_FPlayResModel.m */; };
+		1271F61B1C9C01FD00695B1B /* PlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1271F61A1C9C01FD00695B1B /* PlayVC.m */; };
 		12E363B71C9944D100A1BCBE /* HT_GetUDPVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */; };
 		12E363BE1C99451300A1BCBE /* Documentation.html in Resources */ = {isa = PBXBuildFile; fileRef = 12E363B91C99451300A1BCBE /* Documentation.html */; };
 		12E363BF1C99451300A1BCBE /* GCDAsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = 12E363BB1C99451300A1BCBE /* GCDAsyncSocket.m */; };
@@ -89,6 +90,8 @@
 		1271F6131C9BB2E400695B1B /* HT_FPlaySongsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlaySongsModel.m; sourceTree = "<group>"; };
 		1271F6151C9BB41D00695B1B /* HT_FPlayResModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_FPlayResModel.h; sourceTree = "<group>"; };
 		1271F6161C9BB41D00695B1B /* HT_FPlayResModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayResModel.m; sourceTree = "<group>"; };
+		1271F6191C9C01FD00695B1B /* PlayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayVC.h; sourceTree = "<group>"; };
+		1271F61A1C9C01FD00695B1B /* PlayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayVC.m; sourceTree = "<group>"; };
 		12E363B51C9944D100A1BCBE /* HT_GetUDPVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_GetUDPVC.h; sourceTree = "<group>"; };
 		12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_GetUDPVC.m; sourceTree = "<group>"; };
 		12E363B91C99451300A1BCBE /* Documentation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = Documentation.html; sourceTree = "<group>"; };
@@ -166,24 +169,16 @@
 		1267AD341C96A40A008B57A5 /* testWebSocket */ = {
 			isa = PBXGroup;
 			children = (
+				1271F61D1C9C023200695B1B /* remote */,
+				1271F61C1C9C021F00695B1B /* near */,
 				125971EF1C980567001B8E6B /* HT_FPlayManager */,
 				1267AD3B1C96A40A008B57A5 /* ViewController.h */,
 				1267AD3C1C96A40A008B57A5 /* ViewController.m */,
-				125971EC1C97FCB8001B8E6B /* HT_DetailVC.h */,
-				125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */,
-				1271F60F1C9B958400695B1B /* HT_remoteControlVC.h */,
-				1271F6101C9B958400695B1B /* HT_remoteControlVC.m */,
-				12E363B51C9944D100A1BCBE /* HT_GetUDPVC.h */,
-				12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */,
 				1267AD3E1C96A40A008B57A5 /* Main.storyboard */,
 				1267AD411C96A40A008B57A5 /* Assets.xcassets */,
 				1267AD431C96A40A008B57A5 /* LaunchScreen.storyboard */,
 				1267AD461C96A40A008B57A5 /* Info.plist */,
 				1267AD351C96A40A008B57A5 /* Supporting Files */,
-				12EA22021C9A702A00CB1E0E /* CSocketVC.h */,
-				12EA22031C9A702A00CB1E0E /* CSocketVC.m */,
-				12EA220B1C9AA91300CB1E0E /* HT_NearDetailVC.h */,
-				12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */,
 			);
 			path = testWebSocket;
 			sourceTree = "<group>";
@@ -235,6 +230,32 @@
 			name = WS;
 			sourceTree = "<group>";
 		};
+		1271F61C1C9C021F00695B1B /* near */ = {
+			isa = PBXGroup;
+			children = (
+				12EA22021C9A702A00CB1E0E /* CSocketVC.h */,
+				12EA22031C9A702A00CB1E0E /* CSocketVC.m */,
+				12EA220B1C9AA91300CB1E0E /* HT_NearDetailVC.h */,
+				12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */,
+				1271F6191C9C01FD00695B1B /* PlayVC.h */,
+				1271F61A1C9C01FD00695B1B /* PlayVC.m */,
+			);
+			name = near;
+			sourceTree = "<group>";
+		};
+		1271F61D1C9C023200695B1B /* remote */ = {
+			isa = PBXGroup;
+			children = (
+				125971EC1C97FCB8001B8E6B /* HT_DetailVC.h */,
+				125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */,
+				1271F60F1C9B958400695B1B /* HT_remoteControlVC.h */,
+				1271F6101C9B958400695B1B /* HT_remoteControlVC.m */,
+				12E363B51C9944D100A1BCBE /* HT_GetUDPVC.h */,
+				12E363B61C9944D100A1BCBE /* HT_GetUDPVC.m */,
+			);
+			name = remote;
+			sourceTree = "<group>";
+		};
 		12E363B81C99451300A1BCBE /* GCD */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,6 +300,7 @@
 				TargetAttributes = {
 					1267AD311C96A40A008B57A5 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 3F2P8UFVT5;
 					};
 				};
 			};
@@ -340,6 +362,7 @@
 				1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */,
 				1267AD681C96A46D008B57A5 /* AFURLSessionManager.m in Sources */,
 				1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */,
+				1271F61B1C9C01FD00695B1B /* PlayVC.m in Sources */,
 				1267AD791C96A9B9008B57A5 /* SRWebSocket.m in Sources */,
 				1267AD371C96A40A008B57A5 /* main.m in Sources */,
 				1267AD851C96BE42008B57A5 /* HT_FPlayDevice.m in Sources */,
@@ -456,11 +479,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/SocketRocket-Prefix.pch";
 				INFOPLIST_FILE = testWebSocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocket;
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -469,11 +493,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/SocketRocket-Prefix.pch";
 				INFOPLIST_FILE = testWebSocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocket;
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

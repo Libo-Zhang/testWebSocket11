@@ -173,6 +173,34 @@
             <point key="canvasLocation" x="1784" y="59"/>
         </scene>
         <!--Item-->
+        <scene sceneID="yJ6-PT-av1">
+            <objects>
+                <viewController id="2Og-8K-Y8c" customClass="PlayVC" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="n1U-nm-yX0"/>
+                        <viewControllerLayoutGuide type="bottom" id="iFf-Fm-4Bc"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YtB-Tp-yI9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TTs-lk-O1P">
+                                <rect key="frame" x="70" y="114" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="click:" destination="2Og-8K-Y8c" eventType="touchUpInside" id="EEf-vV-ZMm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item" id="xYl-Sb-Ber"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vtA-Jf-bVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-43" y="981"/>
+        </scene>
+        <!--Item-->
         <scene sceneID="D4S-La-rFw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cX9-Rz-qdt" sceneMemberID="viewController">
@@ -203,6 +231,7 @@
                     <connections>
                         <segue destination="q69-4X-akj" kind="relationship" relationship="viewControllers" id="nbo-1l-3a6"/>
                         <segue destination="cX9-Rz-qdt" kind="relationship" relationship="viewControllers" id="SlD-pN-QSX"/>
+                        <segue destination="2Og-8K-Y8c" kind="relationship" relationship="viewControllers" id="uM6-u6-fV1"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jxj-EN-UQ7" userLabel="First Responder" sceneMemberID="firstResponder"/>

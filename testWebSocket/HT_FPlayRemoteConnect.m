@@ -12,7 +12,6 @@
 {
     SRWebSocket *webSocket;
 }
-
 @end
 
 @implementation HT_FPlayRemoteConnect

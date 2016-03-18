@@ -11,7 +11,7 @@
 #import "HT_FPlayManager.h"
 //#define Address @"http://192.168.1.200:9001/mpp"
 //@"http://www.hitinga.com"
-#define Address2 @"http://www.hitinga.com"
+
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
@@ -44,7 +44,6 @@
             [self saveLoginCookie];
             [[HT_FPlayManager getInsnstance] getUserdeviceget];
         }
-        
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"Error: %@", error);
         if(error){

@@ -11,7 +11,7 @@
 #import "HT_FPlayDevice.h"
 //#define Address @"http://192.168.1.200:9001/mpp"
 //http://www.hitinga.com
-#define Address2 @"http://www.hitinga.com"
+
 @interface HT_FPlayManager ()<SRWebSocketDelegate>
 {
     NSString *toDevidString;   //发消息到哪个设备
@@ -80,21 +80,22 @@ static HT_FPlayManager *instance;
     
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
+    __weak typeof (self)weakself = self;
     NSString *url = [NSString stringWithFormat:@"%@/api/userdeviceget",Address2];
     [manager POST:url parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         userDeviceNum = responseObject[@"cnt"];
         //从哪个设备发送消息
         fromDeVidString = [responseObject[@"userinfo"] objectForKey:@"id"];
         if ([responseObject[@"ret"] integerValue]== 0) {
-           
-            self.remoteDeviceList =  [self praseDevice: responseObject[@"devices"]];
-             NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
+            
+            weakself.remoteDeviceList =  [weakself praseDevice: responseObject[@"devices"]];
+            NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
             //获得新的列表   通过block返回
-           // self.devideUpdateblocks(self.mDeviceList);
+            // self.devideUpdateblocks(self.mDeviceList);
+            
+            
         }
-       // NSLog(@"\n%ld \n devideID%@",device.ID,device.devid);
-       // NSLog(@"\nuserDeviceNum:%@ \nfromDeVidString:%@ \nDeviceList:%@",userDeviceNum,fromDeVidString,self.mDeviceList);
+
     }
           failure:^(AFHTTPRequestOperation *operation, NSError *error){
               NSLog(@"Error: %@", error);
@@ -104,12 +105,15 @@ static HT_FPlayManager *instance;
 -(NSMutableArray *)praseDevice:(NSArray *)array{
     NSMutableArray *mutableArr = [NSMutableArray array];
     for (NSDictionary *dic in array) {
-           HT_FPlayDevice *device = [HT_FPlayDevice new];
+        HT_FPlayDevice *device = [HT_FPlayDevice new];
         [device setValuesForKeysWithDictionary:dic];
         //device.connect_remote = self;
         device.UID = [fromDeVidString integerValue];
         [mutableArr addObject:device];
+        NSLog(@"got it");
+        [HT_FPlayManager getInsnstance].currentDevice = device;
     }
+    
     return mutableArr;
 }
 @end

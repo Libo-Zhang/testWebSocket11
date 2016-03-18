@@ -24,4 +24,9 @@ extern "C" {
     
 #ifdef __cplusplus
 }
+
+
+
 #endif
+//#define Address2 @"http://192.168.1.200:9001/mpp"
+#define Address2 @"http://www.hitinga.com"
