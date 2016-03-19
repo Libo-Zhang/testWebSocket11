@@ -103,4 +103,10 @@ static HT_FPlayManager *instance;
     
     return mutableArr;
 }
+-(NSMutableArray *)nearSongList{
+    if (_nearSongList == nil ) {
+        _nearSongList = [NSMutableArray array];
+    }
+    return _nearSongList;
+}
 @end

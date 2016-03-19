@@ -10,9 +10,10 @@
 #import "HT_FPlayDevice.h"
 #import "HT_FPlaySongsModel.h"
 #import "HT_FPlayManager.h"
+#import "HT_FPlayResModel.h"
 @interface HT_SDcardVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableview;
-@property (nonatomic, strong) NSMutableArray *songList;
+//@property (nonatomic, strong) NSMutableArray *songList;
 @property (nonatomic, strong) HT_FPlayDevice *device;
 //@property (nonatomic, strong) NSMutableArray *;
 @end
@@ -22,7 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.songList = [NSMutableArray array];
+   //self.songList = [NSMutableArray array];
     self.device = [HT_FPlayManager getInsnstance].currentDevice;
     NSLog(@"%@ %@",self.device.ipAddress,self.device.dname);
     
@@ -40,7 +41,6 @@
     [self.device.connect_near sendMessage:201 WithotherParams:@[@(0)] WithSongList:nil];
     self.device.connect_near.nearReturnMessageBlock = ^(NSString *message){
         NSLog(@"message%@",message);
-        NSArray *actionArr = [message componentsSeparatedByString:@"action:"];
         
         NSString *actionStr = [message substringWithRange:NSMakeRange(8, 3)];
         
@@ -57,7 +57,17 @@
             for (NSDictionary *dic in response) {
                 HT_FPlaySongsModel *model = [HT_FPlaySongsModel new];
                 [model setValuesForKeysWithDictionary:dic];
-                [weakself.songList addObject:model];
+                NSMutableArray *resmuArr = [NSMutableArray array];
+                HT_FPlayResModel *resModel = [HT_FPlayResModel new];
+                for (NSDictionary *dic in model.res) {
+                    [resModel setValuesForKeysWithDictionary:dic];
+                    [resmuArr addObject:resModel];
+                }
+                model.res = resmuArr;
+                //
+                
+                [[HT_FPlayManager getInsnstance].nearSongList addObject:model];
+               //[weakself.songList addObject:model];
                 [weakself.tableview reloadData];
             }
             
@@ -70,11 +80,11 @@
     return 1;
 }
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return  self.songList.count;
+    return  [HT_FPlayManager getInsnstance].nearSongList.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    HT_FPlaySongsModel *model = self.songList[indexPath.row];
+    HT_FPlaySongsModel *model = [HT_FPlayManager getInsnstance].nearSongList[indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
@@ -82,7 +92,7 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    HT_FPlaySongsModel *model = self.songList[indexPath.row];
+    HT_FPlaySongsModel *model = [HT_FPlayManager getInsnstance].nearSongList[indexPath.row];
     [self.device.connect_near sendMessage:9 WithotherParams:@[@(indexPath.row)] WithSongList:nil];
     
 }

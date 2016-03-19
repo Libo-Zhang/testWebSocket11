@@ -19,4 +19,5 @@
 -(void)getUserdevicegetWithSuccess:(void (^)(NSArray *remoteDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
 @property (nonatomic, strong) HT_FPlayDevice *currentDevice;
 
+@property (nonatomic, strong) NSMutableArray *nearSongList;
 @end

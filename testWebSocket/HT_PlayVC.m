@@ -10,7 +10,9 @@
 #import "HT_FPlayManager.h"
 #import "HT_FPlayDevice.h"
 #import "HT_PlayStatusModel.h"
-
+#import "ZYLrcLine.h"
+#import "HT_FPlaySongsModel.h"
+#import "HT_FPlayResModel.h"
 @interface HT_PlayVC ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic, strong) UISlider *slider;
@@ -21,24 +23,27 @@
 
 @property (nonatomic, strong) NSArray *lyricArr;
 @property (nonatomic, strong) UITableView *lyricTV;
-
+//@property (nonatomic, strong)  <#str#>;
+@property (nonatomic, assign) NSInteger flag;
+@property (nonatomic, assign) NSInteger currentIndex;
+@property (nonatomic, strong) HT_FPlaySongsModel *songModel  ;
 @end
 
 @implementation HT_PlayVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    _flag = 0;
     self.device = [HT_FPlayManager getInsnstance].currentDevice;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.slider = [[UISlider alloc] initWithFrame:CGRectMake(50, 200, 200, 100)];
+    self.slider = [[UISlider alloc] initWithFrame:CGRectMake(50, 130, 200, 100)];
     [self.slider addTarget:self action:@selector(changeSlider:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.slider];
     [self loadData];
     self.timer = [NSTimer scheduledTimerWithTimeInterval:1. target:self selector:@selector(loadData) userInfo:nil repeats:YES];
 
   
-    
-    self.volumeSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 250, 200, 100)];
+    self.volumeSlider = [[UISlider alloc] initWithFrame:CGRectMake(50, 180, 200, 100)];
     [self.volumeSlider addTarget:self action:@selector(volumeChange:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.volumeSlider];
     
@@ -74,7 +79,9 @@
     [self.view addSubview:self.lyricTV];
     self.lyricTV.delegate = self;
     self.lyricTV.dataSource = self;
-    
+    self.lyricTV.separatorStyle = UITableViewCellSeparatorStyleNone;
+    NSLog(@"`````````````````%ld", [HT_FPlayManager getInsnstance].nearSongList.count);
+
     
 }
 -(void)playOrPause:(UIButton *)btn{
@@ -87,13 +94,28 @@
         [self.device.connect_near sendMessage:1 WithotherParams:nil WithSongList:nil];
         [btn setTitle:@"暂停" forState:UIControlStateNormal];
     }
-    
 }
 -(void)next{
     NSLog(@"next");
-    [self.device.connect_near sendMessage:4 WithotherParams:nil WithSongList:nil];
+    _flag = 0;
+    [self.timer setFireDate:[NSDate distantFuture]];
+    dispatch_queue_t  queue =   dispatch_queue_create("two",DISPATCH_QUEUE_CONCURRENT);
+     [self.device.connect_near sendMessage:4 WithotherParams:nil WithSongList:nil];
+    dispatch_async(queue,^{
+        [NSThread sleepForTimeInterval:2];
+    });
+    //执行完上面 执行下面的方法
+    
+    dispatch_barrier_async(queue,^{
+        //启动监听
+        [self.timer setFireDate:[NSDate distantPast]];
+        
+    });
+   
 }
 -(void)Last{
+    _flag = 0;
+    [self.device.connect_near sendMessage:5 WithotherParams:nil WithSongList:nil];
     NSLog(@"last");
 }
 /*
@@ -111,7 +133,19 @@
         id response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
         if ( [NSJSONSerialization isValidJSONObject:response]) {
             NSLog(@"是json数据");
-            
+            if (_flag == 0) {
+                weakself.songModel = [HT_FPlayManager getInsnstance].nearSongList[[response[@"idx"] integerValue]];
+                if (weakself.songModel.res.count != 0) {
+                    HT_FPlayResModel *res = weakself.songModel.res[0];
+                    weakself.lyricArr = [ZYLrcLine lrcLinesWithFileName:res.lrc];
+                    [weakself.lyricTV reloadData];
+                }else{
+                    weakself.lyricArr = @[@"没有歌词源头"];
+                    [weakself.lyricTV reloadData];
+                }
+                
+                _flag = 1;
+            }
             if ([response[@"action"] integerValue] == 104) {//暂停状态的返回
                 HT_PlayStatusModel *model = [HT_PlayStatusModel new];
                 [model setValuesForKeysWithDictionary:response];
@@ -132,6 +166,51 @@
                     [weakself.slider setValue: model.position/(model.duration * 1.0)];
                     //[weakself.volumeSlider setValue: [model.volume integerValue]/100.0];
                 });
+                
+                
+                //歌词时间计算
+                int minute = model.position / 60;
+                int second = (int)model.position % 60;
+                //int msecond = (model.position - (int)model.position) * 100;
+                NSString *currentTimeStr = [NSString stringWithFormat:@"%02d:%02d", minute, second];
+                //NSLog(@"currentTimeStr%@",currentTimeStr);
+                for (int i = 0; i < weakself.lyricArr.count; i++) {
+                    ZYLrcLine *currentLine = weakself.lyricArr[i];
+                    NSString *currentLineTime = currentLine.time;
+                    NSString *nextLineTime = nil;
+                    
+                    if (i + 1 < weakself.lyricArr.count) {
+                        ZYLrcLine *nextLine = weakself.lyricArr[i + 1];
+                        nextLineTime = nextLine.time;
+                    }
+                    if (currentLine.time == nil) {
+                        continue;
+                    }
+                    if (([currentTimeStr compare:currentLineTime] != NSOrderedAscending) && ([currentTimeStr compare:nextLineTime] == NSOrderedAscending)&& (weakself.currentIndex != i) ) {
+//                        //&& (weakself.currentIndex != i)
+                        NSLog(@"currentLineTime~~~%@",currentLineTime);
+                        NSArray *reloadLines = @[
+                                                 [NSIndexPath indexPathForItem:weakself.currentIndex inSection:0],
+                                                 [NSIndexPath indexPathForItem:i inSection:0]
+                                                 ];
+                        weakself.currentIndex = i;
+                        
+                        NSIndexPath *movePath = [NSIndexPath indexPathForRow:i inSection:0];
+                        //weakself.setTableViewBlock(reloadLines,movePath,weakself.lyricArr);
+                        
+                        [weakself.lyricTV reloadRowsAtIndexPaths:reloadLines withRowAnimation:UITableViewRowAnimationNone];
+                        [weakself.lyricTV scrollToRowAtIndexPath:movePath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+                    }
+                    
+                }
+
+                
+                
+                
+                
+                
+                
+                
             }
         }else{
             NSLog(@"不是json数据");
@@ -174,8 +253,6 @@
     });
     
     
-   
- 
     //[self.device.connect_near sendMessage:2 WithotherParams:@[@(position)] WithSongList:nil];
 }
 -(void)volumeChange:(UISlider *)slider{
@@ -209,10 +286,16 @@
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    ZYLrcLine *line = self.lyricArr[indexPath.row];
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
     }
-    cell.textLabel.text = @"111";
+    if (indexPath.row == self.currentIndex) {
+        [cell.textLabel setTextColor:[UIColor blueColor]];
+    }else{
+         [cell.textLabel setTextColor:[UIColor blackColor]];
+    }
+    cell.textLabel.text = line.word;
     return cell;
 }
 
