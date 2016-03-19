@@ -15,9 +15,8 @@
 //设备列表
 @property (nonatomic, strong) NSMutableArray *mDeviceList;
 @property (nonatomic, strong) NSMutableArray *remoteDeviceList;
--(void)createNearUdpSocket;
--(void)getUserdevicegetWithSuccess:(void (^)(id response))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
-
+-(void)getNeardevicegetWithSuccess:(void (^)(NSArray *nearDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
+-(void)getUserdevicegetWithSuccess:(void (^)(NSArray *remoteDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
 @property (nonatomic, strong) HT_FPlayDevice *currentDevice;
 
 @end

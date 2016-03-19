@@ -39,33 +39,23 @@
     [self refreshStateChange:self.refreshControl];
 }
 -(void)refreshStateChange:(UIRefreshControl *)control{
-    [[HT_FPlayManager getInsnstance]createNearUdpSocket];
-//    [[HT_FPlayManager getInsnstance] createNearUdpSocket:^(NSString *message) {
-//         [self.refreshControl endRefreshing];
-//        NSLog(@"~~~~~111111 ");
-//        for (HT_FPlayDevice *device in [HT_FPlayManager getInsnstance].mDeviceList) {
-//            NSLog(@"devid:%@",device.devid);
-//        }
-//        self.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
-//        [self.tableView reloadData];
-//    }];
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        [NSThread sleepForTimeInterval:5];
-        if ([self.refreshControl isRefreshing]) {
-            [self.refreshControl endRefreshing];
-            //self.refreshControl.hidden = YES;
-            
-            if ([HT_FPlayManager getInsnstance].mDeviceList.count == 0) {
-                NSLog(@"并没有列表");
-            }else{
-                for (HT_FPlayDevice *device in [HT_FPlayManager getInsnstance].mDeviceList) {
-                    NSLog(@"devid:%@",device.devid);
-                }
-                self.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
-                [self.tableView reloadData];
-            }
-        }
-    });
+    __weak typeof (self)weakself = self;
+    
+    [[HT_FPlayManager getInsnstance] getNeardevicegetWithSuccess:^(NSArray *nearDeviceArr) {
+        NSLog(@"~~~~%@",nearDeviceArr);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [weakself.refreshControl endRefreshing];
+            weakself.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;
+            [weakself.tableView reloadData];
+        });
+
+    } WithFailer:^(id response) {
+        
+    } WithError:^(NSError *error) {
+        
+    }];
+
+
     
 }
 - (void)didReceiveMemoryWarning {

@@ -49,6 +49,7 @@
     if (stopRefresh == 8) {
         NSLog(@"停止寻找设备");
         [udpServerSocket close];
+        self.getNearDeviceBlock([HT_FPlayManager getInsnstance].mDeviceList);
         return;
     }
     NSArray *array = [message componentsSeparatedByString:@"$"];
@@ -69,6 +70,9 @@
         }
     }
     //return NO;
+}
+-(void)getNeardeviceget{
+    [self createUdpSocket];
 }
 -(BOOL)isNewDevice:(NSString *)macAdd{
     if ([macAdd isEqualToString:@""] || macAdd ==nil) {
@@ -101,31 +105,34 @@
 //监听有服务区端发送来的消息
 -(void)socket:(GCDAsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    //data.bytes
-    NSMutableString *message = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-   
-    if ([message isEqualToString:@"#"]) {
-        if (flag == 0) {
-            flag = 1;
-            [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
-        }
-        //[clientSocket readDataToLength:1 withTimeout:-1 tag:0];
-    }else  if (flag == 1) {
-        NSString *str = [message substringToIndex:message.length - 1];
-        NSLog(@"%@",str);
-        [clientSocket readDataToLength:[str integerValue]  withTimeout:-1 tag:0];
-        flag = 2;
-    }else if(flag == 2){
-         _nearReturnMessageBlock(message);
-        [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
-        flag = 0;
-    }
+     @synchronized(self){//只能加一把锁
+         //data.bytes
+         NSMutableString *message = [[NSMutableString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+         NSLog(@"~~~~!!!!!!%@",message);
+         //     [clientSocket readDataWithTimeout:-1 tag:10];
+         //    //返回不以#开头的
+         //    if (![message hasSuffix:@"#"]) {
+         //         _nearReturnMessageBlock(message);
+         //    }
+         
+         if ([message isEqualToString:@"#"]) {
+             if (flag == 0) {
+                 flag = 1;
+                 [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+             }
+             //[clientSocket readDataToLength:1 withTimeout:-1 tag:0];
+         }else  if (flag == 1) {
+             NSString *str = [message substringToIndex:message.length - 1];
+             //NSLog(@"%@",str);
+             [clientSocket readDataToLength:[str integerValue]  withTimeout:-1 tag:0];
+             flag = 2;
+         }else if(flag == 2){
+             _nearReturnMessageBlock(message);
+             [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
+             flag = 0;
+         }
 
-    // self.showTextView.text = [NSString stringWithFormat:@"%@%@\n",self.showTextView.text,message];
-   // NSLog(@"%@ tag:%ld",message,tag);
-    //   [clientSocket writeData:data withTimeout:-1 tag:0];
-   // [clientSocket readDataWithTimeout:-1 tag:10];
-    //[clientSocket readDataToLength:5 withTimeout:1 tag:0];
+     }    
 }
 - (void)socket:(GCDAsyncSocket *)sock didReadPartialDataOfLength:(NSUInteger)partialLength tag:(long)tag{
     NSLog(@"~~~~~!!!!%ld",partialLength);
@@ -151,10 +158,11 @@
     }
 }
 - (void)sendMessage:(NSInteger )action WithotherParams:(NSArray *)params WithSongList:(NSArray *)songsList{
+    flag = 0;
     //NSDictionary *dictionary = @{@"action" : @(action)};
     NSMutableDictionary *mudictioanry = [NSMutableDictionary dictionary];;
     [mudictioanry setObject:@(action) forKey:@"action"];
-    flag = 0;
+    
      // NSLog(@"~~~~%@",[self idFromObject:songsList]);
     switch (action) {
         case 0://点歌 需要用到
@@ -174,6 +182,10 @@
             break;
         case 9://播放当前列表中的某一个媒体
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"idx"];
+            
+            break;
+        case 401://播放当前列表中的某一个媒体
+            [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"offset"];
             
             break;
         default:
@@ -206,7 +218,7 @@
     //                    "action" : 0
     //                    } dataUsingEncoding:NSUTF8StringEncoding];
     //经过5秒没发送  就把消息扔了   -1 没有限制  一般会在服务器端限定
-    [clientSocket writeData:sendData withTimeout:5 tag:100];
+    [clientSocket writeData:sendData withTimeout:-1 tag:100];
     
 }
 

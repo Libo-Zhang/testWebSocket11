@@ -43,7 +43,6 @@ static HT_FPlayManager *instance;
 -(void)createNearUdpSocket{
     self.nearConnect = [HT_FPlayNearConnect new];
     [self.nearConnect createUdpSocket];
-
 }
 
 - (void)connectToNearDevice:(NSString *)address onPort:(NSInteger)port{
@@ -51,34 +50,18 @@ static HT_FPlayManager *instance;
     [self.nearConnect connectToDevice:address onPort:port];
 }
 
-
-//-(void)start{
-//     self.webSocket = [[SRWebSocket alloc] initWithURLRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"ws://www.itinga.cn:9001/mpp/command.cmd"]]];
-//    //ws://192.168.1.200:9001/mpp/command.cmd
-//    //ws://www.itinga.cn:9001/mpp/command.cmd
-//    //ws://115.29.193.48:8088
-//        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-//    //对取出的cookie进行反归档处理
-//        NSArray *cookies = [NSKeyedUnarchiver unarchiveObjectWithData:[userDefaults objectForKey:@"MyProjectCookie"]];
-//    //不设置cookie 就会直接close的
-//        [self.webSocket setRequestCookies:cookies];
-//        self.webSocket.delegate = self;
-//        [self.webSocket open];
-//}
-//-(void)webSocket:(SRWebSocket *)webSocket didReceiveMessage:(id)message{
-//    NSLog(@"receiveMessage%@",message);
-////    if([message isEqualToString:@"服务器收到了你的消息：C"]){
-////        NSLog(@"update userInfo");
-////        [self getUserdeviceget];
-////    }
-//}
-//- (void)webSocketDidOpen:(SRWebSocket *)webSocket{
-//    NSLog(@"Open it~!!!!!");
-//}
-//// 获取当前用户下的所有设备
--(void)getUserdevicegetWithSuccess:(void (^)(id response))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError{
-
+-(void)getNeardevicegetWithSuccess:(void (^)(NSArray *nearDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError{
     
+    self.nearConnect = [HT_FPlayNearConnect new];
+    [self.nearConnect getNeardeviceget];
+    self.nearConnect.getNearDeviceBlock = ^(NSArray *array){
+        success(array);
+    };
+    
+}
+//// 获取当前用户下的所有设备
+-(void)getUserdevicegetWithSuccess:(void (^)(NSArray *remoteDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError{
+
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     __weak typeof (self)weakself = self;
@@ -88,13 +71,12 @@ static HT_FPlayManager *instance;
         //从哪个设备发送消息
         fromDeVidString = [responseObject[@"userinfo"] objectForKey:@"id"];
         if ([responseObject[@"ret"] integerValue]== 0) {
-            
             weakself.remoteDeviceList =  [weakself praseDevice: responseObject[@"devices"]];
             if (weakself.currentDevice == nil) {
                 weakself.currentDevice = weakself.remoteDeviceList.firstObject;
             }
             NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
-            success(responseObject);
+            success(weakself.remoteDeviceList);
             //获得新的列表   通过block返回
             // self.devideUpdateblocks(self.mDeviceList);
         }else{

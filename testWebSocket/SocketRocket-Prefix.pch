@@ -28,5 +28,15 @@ extern "C" {
 
 
 #endif
-//#define Address2 @"http://192.168.1.200:9001/mpp"
-#define Address2 @"http://www.hitinga.com"
+#define Address2 @"http://192.168.1.200:9001/mpp"
+//#define Address2 @"http://www.hitinga.com"
+#import "MBProgressHUD.h"
+#import "HT_UI_AFNDownload.h"
+#import "HT_UI_PlayManager.h"
+#import "AFNetworking.h"
+#define WIDTH round([UIScreen mainScreen].bounds.size.width)
+#define HEIGHT round([UIScreen mainScreen].bounds.size.height)
+
+
+
+

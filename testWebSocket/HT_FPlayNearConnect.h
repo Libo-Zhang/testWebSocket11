@@ -13,8 +13,13 @@
 @property (nonatomic, strong) void (^nearReturnMessageBlock) (id response);
 -(void)createUdpSocket;
 - (void)connectToDevice:(NSString *)address onPort:(NSInteger)port;
-
 //发送消息
 - (void)sendMessage:(NSInteger )action WithotherParams:(NSArray *)params WithSongList:(NSArray *)songsList;
 
+
+
+
+//获得near 设备列表
+-(void)getNeardeviceget;
+@property (nonatomic, strong) void(^getNearDeviceBlock) (NSArray *array);
 @end

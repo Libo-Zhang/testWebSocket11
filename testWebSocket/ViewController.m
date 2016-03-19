@@ -31,7 +31,7 @@
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
     //传入的参数
-    NSDictionary *parameters = @{@"username":@"1234567",@"password":@"1234567",@"mail":@""};
+    NSDictionary *parameters = @{@"username":@"zhanglibo",@"password":@"zhanglibo",@"mail":@""};
 
     //你的接口地址
     NSString *a= [NSString stringWithFormat:@"%@/api/userlogin",Address2];
