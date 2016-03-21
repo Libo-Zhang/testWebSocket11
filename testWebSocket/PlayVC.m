@@ -18,6 +18,7 @@
 #import "JSONModel.h"
 #import <objc/runtime.h>
 #import "HT_SDManagerVC.h"
+#import "HT_ChooseDeviceVC.h"
 @interface PlayVC ()
 
 @end
@@ -86,15 +87,10 @@
     
     HT_FPlayDevice *device = [HT_FPlayManager getInsnstance].currentDevice;
     //NSLog(@"%@",[HT_FPlayManager getInsnstance].currentDevice);
-    
-//    NSDictionary *dic = @"{"songs":[{"id":642696,"type":1,"name":"Telephone","singer":"Lady Gaga","compose":"KNOWLESBEYONCE,JERKINSRODNEY,DANIELSLASHAWN,FRAN","language":"","pubtime":"2009-11-18","res":[{"duration":290,"fmt":"flac","url":"http:\/\/www.hitinga.com\/get\/playUrl?ws=3&so=642696&rid=3521313"}]}],"action":203}";
-    
-    
     NSArray *arr = @[@{@"id":@(642696),@"type":@(1),@"name":@"Telephone",@"singer":@"Lady Gaga",@"res":@[@{@"duration":@(290),@"fmt":@"flac",@"url":@"http://www.hitinga.com/get/playUrl?ws=3&so=642696&rid=3521313"}]},
          @{@"id":@(1),@"type":@(1),@"name":@"好久不见",@"singer":@"陈奕迅",@"res":@[@{@"duration":@(252),@"fmt":@"mp3",@"url":@"http://www.hitinga.com/get/playUrl?ws=3&so=1&rid=1469",@"lrc":@"http://musicdata.baidu.com/data2/lrc/242604231/%E5%A5%BD%E4%B9%85%E4%B8%8D%E8%A7%81.lrc"}]},
-                     @{@"id":@(2),@"type":@(1),@"name":@"十年",@"singer":@"陈奕迅",@"res":@[@{@"duration":@(205),@"fmt":@"mp3",@"url":@"http://www.hitinga.com/get/playUrl?ws=3&so=2&rid=14",@"lrc":@"http://musicdata.baidu.com/data2/lrc/129452375/%E5%8D%81%E5%B9%B4%2D.lrc"}]}
+        @{@"id":@(2),@"type":@(1),@"name":@"十年",@"singer":@"陈奕迅",@"res":@[@{@"duration":@(205),@"fmt":@"mp3",@"url":@"http://www.hitinga.com/get/playUrl?ws=3&so=2&rid=14",@"lrc":@"http://musicdata.baidu.com/data2/lrc/129452375/%E5%8D%81%E5%B9%B4%2D.lrc"}]}
                      ];
-    
     HT_FPlaySongsModel *songsModel = [HT_FPlaySongsModel new];
     HT_FPlayResModel *res = [HT_FPlayResModel new];
     res.duration = 290;
@@ -107,12 +103,8 @@
     songsModel.res = @[res];
     
     //NSArray *array = [JSONModel arrayOfDictionariesFromModels:@[songsModel]];
-    
     NSDictionary *array = [self dictionaryWithModel:songsModel];
-    
     NSLog(@"ssss%@",array);
-    
-    
     [device.connect_near sendMessage:203 WithotherParams:nil WithSongList:arr];
     
 }
@@ -161,6 +153,12 @@
 }
 
 
+- (IBAction)chooseDevice:(UIButton *)sender {
+    HT_ChooseDeviceVC *chooose = [HT_ChooseDeviceVC new];
+    [self.navigationController pushViewController:chooose animated:YES];
+    
+    
+}
 
 
 -(void)loadSongListData{

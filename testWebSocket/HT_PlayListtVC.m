@@ -91,7 +91,6 @@
     HT_FPlaySongsModel *model = [HT_FPlayManager getInsnstance].nearSongList[indexPath.row];
     [HT_FPlayManager getInsnstance].songListIndex = indexPath.row;
     [self.device.connect_near sendMessage:9 WithotherParams:@[@(indexPath.row)] WithSongList:nil];
-    
 }
 
 @end

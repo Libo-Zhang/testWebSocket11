@@ -5,7 +5,7 @@
 //  Created by uniview on 16/3/17.
 //  Copyright © 2016年 uniview. All rights reserved.
 //
-
+//查找设备  
 #import <UIKit/UIKit.h>
 #import "HT_FPlayManager.h"
 @interface CSocketVC : UIViewController

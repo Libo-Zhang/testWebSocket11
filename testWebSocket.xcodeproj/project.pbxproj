@@ -40,7 +40,6 @@
 		12EA22041C9A702A00CB1E0E /* CSocketVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA22031C9A702A00CB1E0E /* CSocketVC.m */; };
 		12EA22071C9A877B00CB1E0E /* HT_FPlayNearConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA22061C9A877B00CB1E0E /* HT_FPlayNearConnect.m */; };
 		12EA220A1C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA22091C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m */; };
-		12EA220D1C9AA91300CB1E0E /* HT_NearDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */; };
 		12FDD84D1C9FC4E2003ED9B4 /* JSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FDD8461C9FC4E2003ED9B4 /* JSONModel.m */; };
 		12FDD84E1C9FC4E2003ED9B4 /* JSONModelArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FDD8481C9FC4E2003ED9B4 /* JSONModelArray.m */; };
 		12FDD84F1C9FC4E2003ED9B4 /* JSONModelClassProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FDD84A1C9FC4E2003ED9B4 /* JSONModelClassProperty.m */; };
@@ -56,11 +55,7 @@
 		12FFFC051C9CE1810047D2D7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC041C9CE1810047D2D7 /* MBProgressHUD.m */; };
 		12FFFC081C9CF47B0047D2D7 /* HT_PlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC071C9CF47B0047D2D7 /* HT_PlayVC.m */; };
 		12FFFC0B1C9CF8E30047D2D7 /* HT_PlayStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC0A1C9CF8E30047D2D7 /* HT_PlayStatusModel.m */; };
-		12FFFC991C9D40970047D2D7 /* HT_UI_PlayingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC981C9D40970047D2D7 /* HT_UI_PlayingVC.m */; };
-		12FFFC9C1C9D40B10047D2D7 /* HT_UI_LyricTVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC9B1C9D40B10047D2D7 /* HT_UI_LyricTVC.m */; };
-		12FFFC9F1C9D40E50047D2D7 /* HT_UI_Slider.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC9E1C9D40E50047D2D7 /* HT_UI_Slider.m */; };
 		12FFFCA21C9D41170047D2D7 /* ZYLrcLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCA11C9D41170047D2D7 /* ZYLrcLine.m */; };
-		12FFFCA51C9D412C0047D2D7 /* HT_UI_AFNDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCA41C9D412C0047D2D7 /* HT_UI_AFNDownload.m */; };
 		12FFFCC11C9D41460047D2D7 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 12FFFCA71C9D41460047D2D7 /* Info.plist */; };
 		12FFFCC21C9D41460047D2D7 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCA91C9D41460047D2D7 /* MASCompositeConstraint.m */; };
 		12FFFCC31C9D41460047D2D7 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCAC1C9D41460047D2D7 /* MASConstraint.m */; };
@@ -72,8 +67,8 @@
 		12FFFCC91C9D41460047D2D7 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCBB1C9D41460047D2D7 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		12FFFCCA1C9D41460047D2D7 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCBD1C9D41460047D2D7 /* View+MASAdditions.m */; };
 		12FFFCCB1C9D41460047D2D7 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCC01C9D41460047D2D7 /* ViewController+MASAdditions.m */; };
-		12FFFCCE1C9D422A0047D2D7 /* HT_UI_PlayManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCCD1C9D422A0047D2D7 /* HT_UI_PlayManager.m */; };
 		D80E65401C9C3E0800976E7D /* HTTP.m in Sources */ = {isa = PBXBuildFile; fileRef = D80E653F1C9C3E0800976E7D /* HTTP.m */; };
+		D820311D1CA02C45003785FD /* HT_ChooseDeviceVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D820311C1CA02C45003785FD /* HT_ChooseDeviceVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -140,8 +135,6 @@
 		12EA22061C9A877B00CB1E0E /* HT_FPlayNearConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayNearConnect.m; sourceTree = "<group>"; };
 		12EA22081C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_FPlayRemoteConnect.h; sourceTree = "<group>"; };
 		12EA22091C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_FPlayRemoteConnect.m; sourceTree = "<group>"; };
-		12EA220B1C9AA91300CB1E0E /* HT_NearDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_NearDetailVC.h; sourceTree = "<group>"; };
-		12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_NearDetailVC.m; sourceTree = "<group>"; };
 		12FDD8451C9FC4E2003ED9B4 /* JSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModel.h; sourceTree = "<group>"; };
 		12FDD8461C9FC4E2003ED9B4 /* JSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONModel.m; sourceTree = "<group>"; };
 		12FDD8471C9FC4E2003ED9B4 /* JSONModelArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONModelArray.h; sourceTree = "<group>"; };
@@ -173,16 +166,8 @@
 		12FFFC071C9CF47B0047D2D7 /* HT_PlayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_PlayVC.m; sourceTree = "<group>"; };
 		12FFFC091C9CF8E30047D2D7 /* HT_PlayStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_PlayStatusModel.h; sourceTree = "<group>"; };
 		12FFFC0A1C9CF8E30047D2D7 /* HT_PlayStatusModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_PlayStatusModel.m; sourceTree = "<group>"; };
-		12FFFC971C9D40970047D2D7 /* HT_UI_PlayingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_UI_PlayingVC.h; sourceTree = "<group>"; };
-		12FFFC981C9D40970047D2D7 /* HT_UI_PlayingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_UI_PlayingVC.m; sourceTree = "<group>"; };
-		12FFFC9A1C9D40B10047D2D7 /* HT_UI_LyricTVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_UI_LyricTVC.h; sourceTree = "<group>"; };
-		12FFFC9B1C9D40B10047D2D7 /* HT_UI_LyricTVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_UI_LyricTVC.m; sourceTree = "<group>"; };
-		12FFFC9D1C9D40E50047D2D7 /* HT_UI_Slider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_UI_Slider.h; sourceTree = "<group>"; };
-		12FFFC9E1C9D40E50047D2D7 /* HT_UI_Slider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_UI_Slider.m; sourceTree = "<group>"; };
 		12FFFCA01C9D41170047D2D7 /* ZYLrcLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYLrcLine.h; sourceTree = "<group>"; };
 		12FFFCA11C9D41170047D2D7 /* ZYLrcLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYLrcLine.m; sourceTree = "<group>"; };
-		12FFFCA31C9D412C0047D2D7 /* HT_UI_AFNDownload.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_UI_AFNDownload.h; sourceTree = "<group>"; };
-		12FFFCA41C9D412C0047D2D7 /* HT_UI_AFNDownload.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_UI_AFNDownload.m; sourceTree = "<group>"; };
 		12FFFCA71C9D41460047D2D7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		12FFFCA81C9D41460047D2D7 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		12FFFCA91C9D41460047D2D7 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MASCompositeConstraint.m; sourceTree = "<group>"; };
@@ -209,10 +194,10 @@
 		12FFFCBE1C9D41460047D2D7 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		12FFFCBF1C9D41460047D2D7 /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		12FFFCC01C9D41460047D2D7 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		12FFFCCC1C9D422A0047D2D7 /* HT_UI_PlayManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_UI_PlayManager.h; sourceTree = "<group>"; };
-		12FFFCCD1C9D422A0047D2D7 /* HT_UI_PlayManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_UI_PlayManager.m; sourceTree = "<group>"; };
 		D80E653E1C9C3E0800976E7D /* HTTP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTP.h; sourceTree = "<group>"; };
 		D80E653F1C9C3E0800976E7D /* HTTP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTP.m; sourceTree = "<group>"; };
+		D820311B1CA02C45003785FD /* HT_ChooseDeviceVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_ChooseDeviceVC.h; sourceTree = "<group>"; };
+		D820311C1CA02C45003785FD /* HT_ChooseDeviceVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_ChooseDeviceVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -347,22 +332,10 @@
 		1271F61C1C9C021F00695B1B /* near */ = {
 			isa = PBXGroup;
 			children = (
-				12FFFCCC1C9D422A0047D2D7 /* HT_UI_PlayManager.h */,
-				12FFFCCD1C9D422A0047D2D7 /* HT_UI_PlayManager.m */,
-				12FFFCA31C9D412C0047D2D7 /* HT_UI_AFNDownload.h */,
-				12FFFCA41C9D412C0047D2D7 /* HT_UI_AFNDownload.m */,
 				12FFFCA01C9D41170047D2D7 /* ZYLrcLine.h */,
 				12FFFCA11C9D41170047D2D7 /* ZYLrcLine.m */,
-				12FFFC9D1C9D40E50047D2D7 /* HT_UI_Slider.h */,
-				12FFFC9E1C9D40E50047D2D7 /* HT_UI_Slider.m */,
-				12FFFC9A1C9D40B10047D2D7 /* HT_UI_LyricTVC.h */,
-				12FFFC9B1C9D40B10047D2D7 /* HT_UI_LyricTVC.m */,
-				12FFFC971C9D40970047D2D7 /* HT_UI_PlayingVC.h */,
-				12FFFC981C9D40970047D2D7 /* HT_UI_PlayingVC.m */,
 				12EA22021C9A702A00CB1E0E /* CSocketVC.h */,
 				12EA22031C9A702A00CB1E0E /* CSocketVC.m */,
-				12EA220B1C9AA91300CB1E0E /* HT_NearDetailVC.h */,
-				12EA220C1C9AA91300CB1E0E /* HT_NearDetailVC.m */,
 				1271F6191C9C01FD00695B1B /* PlayVC.h */,
 				1271F61A1C9C01FD00695B1B /* PlayVC.m */,
 				12FFFC001C9CD3030047D2D7 /* HT_PlayListtVC.h */,
@@ -373,6 +346,8 @@
 				12FFFC0A1C9CF8E30047D2D7 /* HT_PlayStatusModel.m */,
 				12FDD86A1C9FCDE3003ED9B4 /* HT_SDManagerVC.h */,
 				12FDD86B1C9FCDE3003ED9B4 /* HT_SDManagerVC.m */,
+				D820311B1CA02C45003785FD /* HT_ChooseDeviceVC.h */,
+				D820311C1CA02C45003785FD /* HT_ChooseDeviceVC.m */,
 			);
 			name = near;
 			sourceTree = "<group>";
@@ -563,13 +538,11 @@
 				12EA220A1C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m in Sources */,
 				1267AD3D1C96A40A008B57A5 /* ViewController.m in Sources */,
 				1267AD821C96AB73008B57A5 /* HT_FPlayManager.m in Sources */,
-				12FFFCA51C9D412C0047D2D7 /* HT_UI_AFNDownload.m in Sources */,
 				1271F6141C9BB2E400695B1B /* HT_FPlaySongsModel.m in Sources */,
 				12FFFCCA1C9D41460047D2D7 /* View+MASAdditions.m in Sources */,
 				1267AD611C96A46D008B57A5 /* AFHTTPRequestOperationManager.m in Sources */,
 				1267AD631C96A46D008B57A5 /* AFNetworkReachabilityManager.m in Sources */,
 				12FFFC051C9CE1810047D2D7 /* MBProgressHUD.m in Sources */,
-				12EA220D1C9AA91300CB1E0E /* HT_NearDetailVC.m in Sources */,
 				1267AD671C96A46D008B57A5 /* AFURLResponseSerialization.m in Sources */,
 				12FFFCC51C9D41460047D2D7 /* MASLayoutConstraint.m in Sources */,
 				12FDD8661C9FC558003ED9B4 /* JSONValueTransformer.m in Sources */,
@@ -588,23 +561,20 @@
 				12E363C01C99451300A1BCBE /* GCDAsyncUdpSocket.m in Sources */,
 				12FDD84F1C9FC4E2003ED9B4 /* JSONModelClassProperty.m in Sources */,
 				1267AD661C96A46D008B57A5 /* AFURLRequestSerialization.m in Sources */,
-				12FFFC9C1C9D40B10047D2D7 /* HT_UI_LyricTVC.m in Sources */,
 				12FDD84D1C9FC4E2003ED9B4 /* JSONModel.m in Sources */,
 				12FFFCC71C9D41460047D2D7 /* MASViewConstraint.m in Sources */,
 				12FDD86C1C9FCDE3003ED9B4 /* HT_SDManagerVC.m in Sources */,
 				12FFFCC21C9D41460047D2D7 /* MASCompositeConstraint.m in Sources */,
 				12FFFC0B1C9CF8E30047D2D7 /* HT_PlayStatusModel.m in Sources */,
-				12FFFC9F1C9D40E50047D2D7 /* HT_UI_Slider.m in Sources */,
 				12FDD8611C9FC558003ED9B4 /* NSArray+JSONModel.m in Sources */,
 				12FFFCC61C9D41460047D2D7 /* MASViewAttribute.m in Sources */,
-				12FFFC991C9D40970047D2D7 /* HT_UI_PlayingVC.m in Sources */,
 				12FDD8501C9FC4E2003ED9B4 /* JSONModelError.m in Sources */,
 				1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */,
 				12FFFC021C9CD3030047D2D7 /* HT_PlayListtVC.m in Sources */,
 				1267AD681C96A46D008B57A5 /* AFURLSessionManager.m in Sources */,
 				1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */,
+				D820311D1CA02C45003785FD /* HT_ChooseDeviceVC.m in Sources */,
 				1271F61B1C9C01FD00695B1B /* PlayVC.m in Sources */,
-				12FFFCCE1C9D422A0047D2D7 /* HT_UI_PlayManager.m in Sources */,
 				12FFFCC91C9D41460047D2D7 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				12FDD8641C9FC558003ED9B4 /* JSONModel+networking.m in Sources */,
 				1267AD791C96A9B9008B57A5 /* SRWebSocket.m in Sources */,

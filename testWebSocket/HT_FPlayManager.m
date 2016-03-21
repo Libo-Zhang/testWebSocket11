@@ -73,12 +73,12 @@ static HT_FPlayManager *instance;
         if ([responseObject[@"ret"] integerValue]== 0) {
             weakself.remoteDeviceList =  [weakself praseDevice: responseObject[@"devices"]];
             if (weakself.currentDevice == nil) {
-                weakself.currentDevice = weakself.remoteDeviceList.firstObject;
+                NSLog(@"当前设备为空");
+                //weakself.currentDevice = weakself.remoteDeviceList.firstObject;
             }
             NSLog(@"获得成功 %ld",self.remoteDeviceList.count);
             success(weakself.remoteDeviceList);
-            //获得新的列表   通过block返回
-            // self.devideUpdateblocks(self.mDeviceList);
+           
         }else{
             failer(responseObject);
         }
@@ -114,5 +114,11 @@ static HT_FPlayManager *instance;
         _SDSongList = [NSMutableArray array];
     }
     return _SDSongList;
+}
+-(NSMutableArray *)onlineDevice{
+    if (_onlineDevice == nil) {
+        _onlineDevice = [NSMutableArray array];
+    }
+    return _onlineDevice;
 }
 @end

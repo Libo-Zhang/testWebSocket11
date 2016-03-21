@@ -8,7 +8,7 @@
 
 #import "CSocketVC.h"
 #import "HT_FPlayDevice.h"
-#import "HT_NearDetailVC.h"
+
 #import "AFNetworking.h"
 @interface CSocketVC () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIRefreshControl *refreshControl;
@@ -54,9 +54,6 @@
     } WithError:^(NSError *error) {
         
     }];
-
-
-    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
