@@ -6,19 +6,19 @@
 //  Copyright © 2016年 uniview. All rights reserved.
 //
 
-#import "HT_SDcardVC.h"
+#import "HT_PlayListtVC.h"
 #import "HT_FPlayDevice.h"
 #import "HT_FPlaySongsModel.h"
 #import "HT_FPlayManager.h"
 #import "HT_FPlayResModel.h"
-@interface HT_SDcardVC ()<UITableViewDelegate,UITableViewDataSource>
+@interface HT_PlayListtVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableview;
 //@property (nonatomic, strong) NSMutableArray *songList;
 @property (nonatomic, strong) HT_FPlayDevice *device;
 //@property (nonatomic, strong) NSMutableArray *;
 @end
 
-@implementation HT_SDcardVC
+@implementation HT_PlayListtVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -37,20 +37,18 @@
     [self loadData];
 }
 -(void)loadData{
+    [HT_FPlayManager getInsnstance].nearSongList = [NSMutableArray array];
     __weak typeof (self)weakself = self;
     [self.device.connect_near sendMessage:201 WithotherParams:@[@(0)] WithSongList:nil];
     self.device.connect_near.nearReturnMessageBlock = ^(NSString *message){
         NSLog(@"message%@",message);
         
         NSString *actionStr = [message substringWithRange:NSMakeRange(8, 3)];
-        
         if ([actionStr isEqualToString:@"202"]) {
             NSArray *array = [message componentsSeparatedByString:@"songs"];
-            
             NSString *str = array.lastObject;
             NSString *str2 = [str substringWithRange:NSMakeRange(1, str.length - 2 )];;
             NSLog(@"songs %@",str2);
-            
             NSData *data = [str2 dataUsingEncoding:NSUTF8StringEncoding];
             NSError *error = nil;
             id response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
@@ -64,13 +62,10 @@
                     [resmuArr addObject:resModel];
                 }
                 model.res = resmuArr;
-                //
-                
                 [[HT_FPlayManager getInsnstance].nearSongList addObject:model];
                //[weakself.songList addObject:model];
                 [weakself.tableview reloadData];
             }
-            
             NSLog(@"%@",error);
             NSLog(@"%@",response);
         }
@@ -92,7 +87,9 @@
     return cell;
 }
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     HT_FPlaySongsModel *model = [HT_FPlayManager getInsnstance].nearSongList[indexPath.row];
+    [HT_FPlayManager getInsnstance].songListIndex = indexPath.row;
     [self.device.connect_near sendMessage:9 WithotherParams:@[@(indexPath.row)] WithSongList:nil];
     
 }

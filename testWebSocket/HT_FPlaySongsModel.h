@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface HT_FPlaySongsModel : NSObject
-@property (nonatomic, assign) NSInteger ID;
+@property (nonatomic, assign) NSInteger id;
 @property (nonatomic, assign) NSInteger type;
 @property (nonatomic, strong) NSString  *name;
 @property (nonatomic, strong) NSString  *singer;

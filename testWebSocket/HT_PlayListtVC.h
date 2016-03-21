@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HT_SDcardVC : UIViewController
+@interface HT_PlayListtVC : UIViewController
 
 @end

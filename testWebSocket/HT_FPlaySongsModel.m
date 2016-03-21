@@ -11,7 +11,7 @@
 @implementation HT_FPlaySongsModel
 -(void)setValue:(id)value forUndefinedKey:(NSString *)key{
     if ([key isEqualToString:@"id"]) {
-        _ID = [value integerValue];
+        _id = [value integerValue];
     }
 }
 @end

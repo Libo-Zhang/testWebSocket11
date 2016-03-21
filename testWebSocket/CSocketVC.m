@@ -42,7 +42,7 @@
     __weak typeof (self)weakself = self;
     
     [[HT_FPlayManager getInsnstance] getNeardevicegetWithSuccess:^(NSArray *nearDeviceArr) {
-        NSLog(@"~~~~%@",nearDeviceArr);
+        NSLog(@"~~deviceArr~~%@",nearDeviceArr);
         dispatch_async(dispatch_get_main_queue(), ^{
             [weakself.refreshControl endRefreshing];
             weakself.deviceArr = [HT_FPlayManager getInsnstance].mDeviceList;

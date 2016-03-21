@@ -109,4 +109,10 @@ static HT_FPlayManager *instance;
     }
     return _nearSongList;
 }
+-(NSMutableArray *)SDSongList{
+    if (_SDSongList == nil) {
+        _SDSongList = [NSMutableArray array];
+    }
+    return _SDSongList;
+}
 @end

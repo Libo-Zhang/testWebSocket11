@@ -205,6 +205,20 @@
                                     <action selector="click:" destination="2Og-8K-Y8c" eventType="touchUpInside" id="EEf-vV-ZMm"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="389-qJ-IrI">
+                                <rect key="frame" x="56" y="254" width="30" height="30"/>
+                                <state key="normal" title="点歌"/>
+                                <connections>
+                                    <action selector="diange:" destination="2Og-8K-Y8c" eventType="touchUpInside" id="ITz-SM-7b2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRq-g6-DrW">
+                                <rect key="frame" x="42" y="311" width="59" height="30"/>
+                                <state key="normal" title="songList"/>
+                                <connections>
+                                    <action selector="songList:" destination="2Og-8K-Y8c" eventType="touchUpInside" id="nlz-L2-Lnh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>

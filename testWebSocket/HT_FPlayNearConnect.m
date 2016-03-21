@@ -100,6 +100,7 @@
 //监听是否发送成功
 -(void)socket:(GCDAsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
+   
     NSLog(@"客户端发送成功");
 }
 //监听有服务区端发送来的消息
@@ -115,10 +116,14 @@
          //         _nearReturnMessageBlock(message);
          //    }
          
-         if ([message isEqualToString:@"#"]) {
-             if (flag == 0) {
+         if (flag == 0) {
+             if ([message isEqualToString:@"#"]) {
                  flag = 1;
                  [clientSocket readDataToData:[@"#" dataUsingEncoding:NSUTF8StringEncoding] withTimeout:-1 tag:0];
+             }else{
+                 NSLog(@"在这些情况之外 flag 的值为");
+                // [clientSocket readDataWithTimeout:-1 tag:0];
+                 //flag = 0;
              }
              //[clientSocket readDataToLength:1 withTimeout:-1 tag:0];
          }else  if (flag == 1) {
@@ -130,6 +135,9 @@
              _nearReturnMessageBlock(message);
              [clientSocket readDataToLength:1 withTimeout:-1 tag:0];
              flag = 0;
+         }else{// 有时候发送  没有返回  感觉是这里还需要改 测试
+             NSLog(@"在这些情况之外 flag 的值为:%ld",flag);
+              //[clientSocket readDataWithTimeout:-1 tag:0];
          }
 
      }    
@@ -140,6 +148,9 @@
 
 -(void)socketDidDisconnect:(GCDAsyncSocket *)sock withError:(NSError *)err{
     NSLog(@"!~~~~~~~error%@",err);
+    NSLog(@"重新连接");
+     //[self connectToDevice:@"192.168.0.111" onPort:19211];
+    
 }
 - (void)connectToDevice:(NSString *)address onPort:(NSInteger)port {
     //创建clientSocket 对象
@@ -158,12 +169,13 @@
     }
 }
 - (void)sendMessage:(NSInteger )action WithotherParams:(NSArray *)params WithSongList:(NSArray *)songsList{
-    flag = 0;
+    
+    
+    //flag = 0;
     //NSDictionary *dictionary = @{@"action" : @(action)};
     NSMutableDictionary *mudictioanry = [NSMutableDictionary dictionary];;
     [mudictioanry setObject:@(action) forKey:@"action"];
     
-     // NSLog(@"~~~~%@",[self idFromObject:songsList]);
     switch (action) {
         case 0://点歌 需要用到
             [mudictioanry setObject:songsList forKey:@"songs"];
@@ -182,16 +194,21 @@
             break;
         case 9://播放当前列表中的某一个媒体
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"idx"];
-            
             break;
         case 401://播放当前列表中的某一个媒体
             [mudictioanry setObject:@([params.firstObject integerValue]) forKey:@"offset"];
             
             break;
+        case 203:
+            [mudictioanry setObject:songsList forKey:@"songs"];
+            break;
+        case 403:
+            [mudictioanry setObject:params.firstObject forKey:@"fileid"];
+            break;
         default:
             break;
     }
-  
+    NSLog(@"~~~~%@",mudictioanry);
    // NSDictionary *dic = @{@"pubtime":@"0000-00-00"};
    //NSString *dicstr = @"{pubtime: "0000-00-00",id: 3390, res: [{duration: 197,filesize: 4720318,fmt: "mp3",quality: 0,lrc: "http://musicdata.baidu.com/data2/lrc/65644956/01%2E%E9%BB%84%E9%87%91%E7%94%B2%28%E7%BD%91%E7%BB%9C%E7%89%88%29.lrc",bitrate: 192,url: "http://www.hitinga.com/get/playUrl?ws=3&so=3390&rid=28403"}],name: "01.黄金甲(网络版)",compose: "",singer: "周杰伦",language: "",posters: "http://a.hiphotos.baidu.com/ting/pic/item/024f78f0f736afc320f09770b119ebc4b7451222.jpg"}"
     //NSData *data = [mudictioanry d]

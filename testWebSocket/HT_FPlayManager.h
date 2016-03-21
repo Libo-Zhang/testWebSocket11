@@ -20,4 +20,6 @@
 @property (nonatomic, strong) HT_FPlayDevice *currentDevice;
 
 @property (nonatomic, strong) NSMutableArray *nearSongList;
+@property (nonatomic, strong) NSMutableArray *SDSongList;
+@property (nonatomic, assign) NSInteger songListIndex;
 @end
