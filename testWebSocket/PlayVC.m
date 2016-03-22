@@ -40,6 +40,7 @@
         }
     }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     //getUser 放在remoteArr中

@@ -13,6 +13,7 @@
 #import "ZYLrcLine.h"
 #import "HT_FPlaySongsModel.h"
 #import "HT_FPlayResModel.h"
+#import <AVFoundation/AVFoundation.h>
 @interface HT_PlayVC ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UIButton *pauseorstartBtn;
 @property (nonatomic, strong) UISlider *slider;
@@ -30,10 +31,51 @@
 @end
 
 @implementation HT_PlayVC
-
+-(void)initAudioSession{
+    
+    
+    NSError *error;
+    [[AVAudioSession sharedInstance] setActive:YES error:&error];
+    
+    // add event handler, for this example, it is `volumeChange:` method
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
+    [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
+    
+}
+- (void)volumeChanged:(NSNotification *)notification
+{
+    float volume =
+    [[[notification userInfo]
+      objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"]
+     floatValue];
+    
+    [self.device.connect_near sendMessage:6 WithotherParams:@[@(volume * 100)] WithSongList:nil];
+    NSLog(@"volume %lf",volume * 100);
+    //
+    dispatch_queue_t  queue =   dispatch_queue_create("one",DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(queue,^{
+        [NSThread sleepForTimeInterval:2];
+    });
+    //执行完上面 执行下面的方法
+    
+    dispatch_barrier_async(queue,^{
+        //启动监听
+        [self.timer setFireDate:[NSDate distantPast]];
+        
+    });
+    
+    NSLog(@"~~~%lf",volume);
+    
+}
+-(void)dealloc{
+    [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    [self initAudioSession];
+
     for (HT_FPlaySongsModel *songs in [HT_FPlayManager getInsnstance].nearSongList) {
         NSLog(@"songsName:%@",songs.name);
     }
@@ -261,7 +303,7 @@
     NSInteger position = (NSInteger)(slider.value * self.statusModle.duration);
       NSLog(@"postiion1111%ld",position);
   
-     [self.device.connect_near sendMessage:7 WithotherParams:@[@(position)] WithSongList:nil];
+    [self.device.connect_near sendMessage:7 WithotherParams:@[@(position)] WithSongList:nil];
     
     //
     dispatch_queue_t  queue =   dispatch_queue_create("one",DISPATCH_QUEUE_CONCURRENT);
