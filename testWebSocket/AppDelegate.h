@@ -12,6 +12,10 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+/*!
+ *  Current detected ssid
+ */
+@property (nonatomic, copy) NSString * currentSSID;
 
 @end
 

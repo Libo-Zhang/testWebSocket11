@@ -17,24 +17,27 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
-    
+
 #ifdef __OBJC__
     #import <Foundation/Foundation.h>
-#endif
-    
-#ifdef __cplusplus
-}
-
-
-
-#endif
+    #import "AFNetworking.h"
+//NSString *const kSSIDChangedNotification = @"kSSIDChangedNotification";
 #define Address2 @"http://192.168.1.200:9001/mpp"
-//#define Address2 @"http://www.hitinga.com"
-#import "MBProgressHUD.h"
-
-#import "AFNetworking.h"
+    //#define Address2 @"http://www.hitinga.com"
+   
+    //#import "AFNetworking.h"
 #define WIDTH round([UIScreen mainScreen].bounds.size.width)
 #define HEIGHT round([UIScreen mainScreen].bounds.size.height)
+#endif
+    
+    
+#ifdef __cplusplus
+    
+}
+
+#endif
+
+
 
 
 

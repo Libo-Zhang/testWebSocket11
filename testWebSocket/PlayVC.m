@@ -19,6 +19,8 @@
 #import <objc/runtime.h>
 #import "HT_SDManagerVC.h"
 #import "HT_ChooseDeviceVC.h"
+#import "BindVC2.h"
+#import "BindVC.h"
 @interface PlayVC ()
 
 @end
@@ -45,7 +47,7 @@
     HT_FPlayDevice *device = [HT_FPlayDevice new];
 
     device.connect_near = [HT_FPlayNearConnect new];
-    [device.connect_near connectToDevice:@"192.168.0.111" onPort:19211];
+    [device.connect_near connectToDevice:@"192.168.0.123" onPort:19211];
     [HT_FPlayManager getInsnstance].currentDevice = device;
    
     //[self loadSongListData];
@@ -156,6 +158,15 @@
 - (IBAction)chooseDevice:(UIButton *)sender {
     HT_ChooseDeviceVC *chooose = [HT_ChooseDeviceVC new];
     [self.navigationController pushViewController:chooose animated:YES];
+    
+    
+}
+- (IBAction)bangDingDevice:(UIButton *)sender {
+    
+    
+    BindVC *bindVC = [BindVC new];
+    [self.navigationController pushViewController:bindVC animated:YES];
+    
     
     
 }

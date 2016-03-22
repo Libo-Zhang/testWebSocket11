@@ -10,6 +10,7 @@
 #import "SRWebSocket.h"
 #import "HT_FPlayNearConnect.h"
 #import "HT_FPlayDevice.h"
+//#import "AFNetworking.h"
 @interface HT_FPlayManager : NSObject
 +(instancetype)getInsnstance;
 //得到附近的设备列表

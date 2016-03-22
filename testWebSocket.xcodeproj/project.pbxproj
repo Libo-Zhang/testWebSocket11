@@ -7,6 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1230E74C1CA0D08900638C0B /* BindVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E74B1CA0D08900638C0B /* BindVC.m */; };
+		1230E7941CA0DA9F00638C0B /* OMNIConfig.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7911CA0DA9F00638C0B /* OMNIConfig.xcdatamodeld */; };
+		1230E7B91CA0DBC600638C0B /* DeviceCommander.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7981CA0DBC600638C0B /* DeviceCommander.m */; };
+		1230E7BA1CA0DBC600638C0B /* NetServiceInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E79A1CA0DBC600638C0B /* NetServiceInfo.m */; };
+		1230E7BB1CA0DBC600638C0B /* channel_lock.c in Sources */ = {isa = PBXBuildFile; fileRef = 1230E79E1CA0DBC600638C0B /* channel_lock.c */; };
+		1230E7BC1CA0DBC600638C0B /* coder.c in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7A01CA0DBC600638C0B /* coder.c */; };
+		1230E7BD1CA0DBC600638C0B /* MIMOSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7A31CA0DBC600638C0B /* MIMOSender.m */; };
+		1230E7BE1CA0DBC600638C0B /* SISOSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7A61CA0DBC600638C0B /* SISOSender.m */; };
+		1230E7BF1CA0DBC600638C0B /* SmartConfigApply.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7A81CA0DBC600638C0B /* SmartConfigApply.m */; };
+		1230E7C01CA0DBC600638C0B /* BonjourScanner.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7AB1CA0DBC600638C0B /* BonjourScanner.m */; };
+		1230E7C11CA0DBC600638C0B /* DebugMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7AD1CA0DBC600638C0B /* DebugMessage.m */; };
+		1230E7C21CA0DBC600638C0B /* Gateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7AF1CA0DBC600638C0B /* Gateway.m */; };
+		1230E7C31CA0DBC600638C0B /* HttpRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7B11CA0DBC600638C0B /* HttpRequest.m */; };
+		1230E7C41CA0DBC600638C0B /* PacketLengthSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7B31CA0DBC600638C0B /* PacketLengthSender.m */; };
+		1230E7C51CA0DBC600638C0B /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7B51CA0DBC600638C0B /* Reachability.m */; };
+		1230E7C61CA0DBC600638C0B /* SimplePing.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7B81CA0DBC600638C0B /* SimplePing.m */; };
+		1230E7CB1CA0E9D800638C0B /* CountDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7CA1CA0E9D800638C0B /* CountDownController.m */; };
+		1230E7CE1CA0EB2200638C0B /* ArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7CD1CA0EB2200638C0B /* ArcView.m */; };
+		1230E7D11CA1102D00638C0B /* BindVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D01CA1102D00638C0B /* BindVC2.m */; };
+		1230E7D51CA139BA00638C0B /* DeviceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D41CA139BA00638C0B /* DeviceListController.m */; };
+		1230E7D91CA13A4E00638C0B /* DiscoveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */; };
 		125971EE1C97FCB8001B8E6B /* HT_DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */; };
 		1267AD371C96A40A008B57A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD361C96A40A008B57A5 /* main.m */; };
 		1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD391C96A40A008B57A5 /* AppDelegate.m */; };
@@ -52,7 +73,6 @@
 		12FDD8661C9FC558003ED9B4 /* JSONValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FDD8601C9FC558003ED9B4 /* JSONValueTransformer.m */; };
 		12FDD86C1C9FCDE3003ED9B4 /* HT_SDManagerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FDD86B1C9FCDE3003ED9B4 /* HT_SDManagerVC.m */; };
 		12FFFC021C9CD3030047D2D7 /* HT_PlayListtVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC011C9CD3030047D2D7 /* HT_PlayListtVC.m */; };
-		12FFFC051C9CE1810047D2D7 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC041C9CE1810047D2D7 /* MBProgressHUD.m */; };
 		12FFFC081C9CF47B0047D2D7 /* HT_PlayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC071C9CF47B0047D2D7 /* HT_PlayVC.m */; };
 		12FFFC0B1C9CF8E30047D2D7 /* HT_PlayStatusModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFC0A1C9CF8E30047D2D7 /* HT_PlayStatusModel.m */; };
 		12FFFCA21C9D41170047D2D7 /* ZYLrcLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 12FFFCA11C9D41170047D2D7 /* ZYLrcLine.m */; };
@@ -72,6 +92,51 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1230E74A1CA0D08900638C0B /* BindVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindVC.h; sourceTree = "<group>"; };
+		1230E74B1CA0D08900638C0B /* BindVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindVC.m; sourceTree = "<group>"; };
+		1230E7921CA0DA9F00638C0B /* OMNIConfig _v2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "OMNIConfig _v2.xcdatamodel"; sourceTree = "<group>"; };
+		1230E7931CA0DA9F00638C0B /* OMNIConfig.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OMNIConfig.xcdatamodel; sourceTree = "<group>"; };
+		1230E7971CA0DBC600638C0B /* DeviceCommander.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceCommander.h; sourceTree = "<group>"; };
+		1230E7981CA0DBC600638C0B /* DeviceCommander.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceCommander.m; sourceTree = "<group>"; };
+		1230E7991CA0DBC600638C0B /* NetServiceInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetServiceInfo.h; sourceTree = "<group>"; };
+		1230E79A1CA0DBC600638C0B /* NetServiceInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetServiceInfo.m; sourceTree = "<group>"; };
+		1230E79B1CA0DBC600638C0B /* libsmartcfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsmartcfg.h; sourceTree = "<group>"; };
+		1230E79C1CA0DBC600638C0B /* libsmartcfg_constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = libsmartcfg_constant.h; sourceTree = "<group>"; };
+		1230E79E1CA0DBC600638C0B /* channel_lock.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = channel_lock.c; sourceTree = "<group>"; };
+		1230E79F1CA0DBC600638C0B /* channel_lock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = channel_lock.h; sourceTree = "<group>"; };
+		1230E7A01CA0DBC600638C0B /* coder.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = coder.c; sourceTree = "<group>"; };
+		1230E7A11CA0DBC600638C0B /* coder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = coder.h; sourceTree = "<group>"; };
+		1230E7A21CA0DBC600638C0B /* MIMOSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MIMOSender.h; sourceTree = "<group>"; };
+		1230E7A31CA0DBC600638C0B /* MIMOSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MIMOSender.m; sourceTree = "<group>"; };
+		1230E7A51CA0DBC600638C0B /* SISOSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISOSender.h; sourceTree = "<group>"; };
+		1230E7A61CA0DBC600638C0B /* SISOSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISOSender.m; sourceTree = "<group>"; };
+		1230E7A71CA0DBC600638C0B /* SmartConfigApply.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmartConfigApply.h; sourceTree = "<group>"; };
+		1230E7A81CA0DBC600638C0B /* SmartConfigApply.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmartConfigApply.m; sourceTree = "<group>"; };
+		1230E7AA1CA0DBC600638C0B /* BonjourScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BonjourScanner.h; sourceTree = "<group>"; };
+		1230E7AB1CA0DBC600638C0B /* BonjourScanner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BonjourScanner.m; sourceTree = "<group>"; };
+		1230E7AC1CA0DBC600638C0B /* DebugMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DebugMessage.h; sourceTree = "<group>"; };
+		1230E7AD1CA0DBC600638C0B /* DebugMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DebugMessage.m; sourceTree = "<group>"; };
+		1230E7AE1CA0DBC600638C0B /* Gateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gateway.h; sourceTree = "<group>"; };
+		1230E7AF1CA0DBC600638C0B /* Gateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gateway.m; sourceTree = "<group>"; };
+		1230E7B01CA0DBC600638C0B /* HttpRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HttpRequest.h; sourceTree = "<group>"; };
+		1230E7B11CA0DBC600638C0B /* HttpRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpRequest.m; sourceTree = "<group>"; };
+		1230E7B21CA0DBC600638C0B /* PacketLengthSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PacketLengthSender.h; sourceTree = "<group>"; };
+		1230E7B31CA0DBC600638C0B /* PacketLengthSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PacketLengthSender.m; sourceTree = "<group>"; };
+		1230E7B41CA0DBC600638C0B /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		1230E7B51CA0DBC600638C0B /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		1230E7B61CA0DBC600638C0B /* route.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = route.h; sourceTree = "<group>"; };
+		1230E7B71CA0DBC600638C0B /* SimplePing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePing.h; sourceTree = "<group>"; };
+		1230E7B81CA0DBC600638C0B /* SimplePing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePing.m; sourceTree = "<group>"; };
+		1230E7C91CA0E9D800638C0B /* CountDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CountDownController.h; sourceTree = "<group>"; };
+		1230E7CA1CA0E9D800638C0B /* CountDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CountDownController.m; sourceTree = "<group>"; };
+		1230E7CC1CA0EB2200638C0B /* ArcView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcView.h; sourceTree = "<group>"; };
+		1230E7CD1CA0EB2200638C0B /* ArcView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcView.m; sourceTree = "<group>"; };
+		1230E7CF1CA1102D00638C0B /* BindVC2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindVC2.h; sourceTree = "<group>"; };
+		1230E7D01CA1102D00638C0B /* BindVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindVC2.m; sourceTree = "<group>"; };
+		1230E7D31CA139BA00638C0B /* DeviceListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListController.h; sourceTree = "<group>"; };
+		1230E7D41CA139BA00638C0B /* DeviceListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListController.m; sourceTree = "<group>"; };
+		1230E7D71CA13A4E00638C0B /* DiscoveryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryCell.h; sourceTree = "<group>"; };
+		1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryCell.m; sourceTree = "<group>"; };
 		125971EC1C97FCB8001B8E6B /* HT_DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_DetailVC.h; sourceTree = "<group>"; };
 		125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_DetailVC.m; sourceTree = "<group>"; };
 		1267AD321C96A40A008B57A5 /* testWebSocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testWebSocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,8 +225,6 @@
 		12FDD86B1C9FCDE3003ED9B4 /* HT_SDManagerVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_SDManagerVC.m; sourceTree = "<group>"; };
 		12FFFC001C9CD3030047D2D7 /* HT_PlayListtVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_PlayListtVC.h; sourceTree = "<group>"; };
 		12FFFC011C9CD3030047D2D7 /* HT_PlayListtVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_PlayListtVC.m; sourceTree = "<group>"; };
-		12FFFC031C9CE1810047D2D7 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
-		12FFFC041C9CE1810047D2D7 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		12FFFC061C9CF47B0047D2D7 /* HT_PlayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_PlayVC.h; sourceTree = "<group>"; };
 		12FFFC071C9CF47B0047D2D7 /* HT_PlayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_PlayVC.m; sourceTree = "<group>"; };
 		12FFFC091C9CF8E30047D2D7 /* HT_PlayStatusModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_PlayStatusModel.h; sourceTree = "<group>"; };
@@ -214,6 +277,95 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1230E7951CA0DBC600638C0B /* libsmartcfg */ = {
+			isa = PBXGroup;
+			children = (
+				1230E7961CA0DBC600638C0B /* Device */,
+				1230E79B1CA0DBC600638C0B /* libsmartcfg.h */,
+				1230E79C1CA0DBC600638C0B /* libsmartcfg_constant.h */,
+				1230E79D1CA0DBC600638C0B /* MIMO */,
+				1230E7A41CA0DBC600638C0B /* SISO */,
+				1230E7A71CA0DBC600638C0B /* SmartConfigApply.h */,
+				1230E7A81CA0DBC600638C0B /* SmartConfigApply.m */,
+				1230E7A91CA0DBC600638C0B /* Util */,
+			);
+			path = libsmartcfg;
+			sourceTree = "<group>";
+		};
+		1230E7961CA0DBC600638C0B /* Device */ = {
+			isa = PBXGroup;
+			children = (
+				1230E7971CA0DBC600638C0B /* DeviceCommander.h */,
+				1230E7981CA0DBC600638C0B /* DeviceCommander.m */,
+				1230E7991CA0DBC600638C0B /* NetServiceInfo.h */,
+				1230E79A1CA0DBC600638C0B /* NetServiceInfo.m */,
+			);
+			path = Device;
+			sourceTree = "<group>";
+		};
+		1230E79D1CA0DBC600638C0B /* MIMO */ = {
+			isa = PBXGroup;
+			children = (
+				1230E79E1CA0DBC600638C0B /* channel_lock.c */,
+				1230E79F1CA0DBC600638C0B /* channel_lock.h */,
+				1230E7A01CA0DBC600638C0B /* coder.c */,
+				1230E7A11CA0DBC600638C0B /* coder.h */,
+				1230E7A21CA0DBC600638C0B /* MIMOSender.h */,
+				1230E7A31CA0DBC600638C0B /* MIMOSender.m */,
+			);
+			path = MIMO;
+			sourceTree = "<group>";
+		};
+		1230E7A41CA0DBC600638C0B /* SISO */ = {
+			isa = PBXGroup;
+			children = (
+				1230E7A51CA0DBC600638C0B /* SISOSender.h */,
+				1230E7A61CA0DBC600638C0B /* SISOSender.m */,
+			);
+			path = SISO;
+			sourceTree = "<group>";
+		};
+		1230E7A91CA0DBC600638C0B /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				1230E7AA1CA0DBC600638C0B /* BonjourScanner.h */,
+				1230E7AB1CA0DBC600638C0B /* BonjourScanner.m */,
+				1230E7AC1CA0DBC600638C0B /* DebugMessage.h */,
+				1230E7AD1CA0DBC600638C0B /* DebugMessage.m */,
+				1230E7AE1CA0DBC600638C0B /* Gateway.h */,
+				1230E7AF1CA0DBC600638C0B /* Gateway.m */,
+				1230E7B01CA0DBC600638C0B /* HttpRequest.h */,
+				1230E7B11CA0DBC600638C0B /* HttpRequest.m */,
+				1230E7B21CA0DBC600638C0B /* PacketLengthSender.h */,
+				1230E7B31CA0DBC600638C0B /* PacketLengthSender.m */,
+				1230E7B41CA0DBC600638C0B /* Reachability.h */,
+				1230E7B51CA0DBC600638C0B /* Reachability.m */,
+				1230E7B61CA0DBC600638C0B /* route.h */,
+				1230E7B71CA0DBC600638C0B /* SimplePing.h */,
+				1230E7B81CA0DBC600638C0B /* SimplePing.m */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
+		1230E7D61CA13A3F00638C0B /* omini */ = {
+			isa = PBXGroup;
+			children = (
+				1230E74A1CA0D08900638C0B /* BindVC.h */,
+				1230E74B1CA0D08900638C0B /* BindVC.m */,
+				1230E7CF1CA1102D00638C0B /* BindVC2.h */,
+				1230E7D01CA1102D00638C0B /* BindVC2.m */,
+				1230E7C91CA0E9D800638C0B /* CountDownController.h */,
+				1230E7CA1CA0E9D800638C0B /* CountDownController.m */,
+				1230E7CC1CA0EB2200638C0B /* ArcView.h */,
+				1230E7CD1CA0EB2200638C0B /* ArcView.m */,
+				1230E7D31CA139BA00638C0B /* DeviceListController.h */,
+				1230E7D41CA139BA00638C0B /* DeviceListController.m */,
+				1230E7D71CA13A4E00638C0B /* DiscoveryCell.h */,
+				1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */,
+			);
+			name = omini;
+			sourceTree = "<group>";
+		};
 		125971EF1C980567001B8E6B /* HT_FPlayManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -241,8 +393,7 @@
 				12EA21FD1C9A62D500CB1E0E /* Security.framework */,
 				12EA21FB1C9A62D000CB1E0E /* CFNetwork.framework */,
 				1267AD7A1C96AA1E008B57A5 /* libicucore.tbd */,
-				12FFFC031C9CE1810047D2D7 /* MBProgressHUD.h */,
-				12FFFC041C9CE1810047D2D7 /* MBProgressHUD.m */,
+				1230E7951CA0DBC600638C0B /* libsmartcfg */,
 				12FDD8511C9FC558003ED9B4 /* JSONModelCategories */,
 				12FDD8541C9FC558003ED9B4 /* JSONModelLib.h */,
 				12FDD8551C9FC558003ED9B4 /* JSONModelNetworking */,
@@ -272,6 +423,7 @@
 				1267AD3B1C96A40A008B57A5 /* ViewController.h */,
 				1267AD3C1C96A40A008B57A5 /* ViewController.m */,
 				1267AD3E1C96A40A008B57A5 /* Main.storyboard */,
+				1230E7911CA0DA9F00638C0B /* OMNIConfig.xcdatamodeld */,
 				1267AD411C96A40A008B57A5 /* Assets.xcassets */,
 				1267AD431C96A40A008B57A5 /* LaunchScreen.storyboard */,
 				1267AD461C96A40A008B57A5 /* Info.plist */,
@@ -332,6 +484,7 @@
 		1271F61C1C9C021F00695B1B /* near */ = {
 			isa = PBXGroup;
 			children = (
+				1230E7D61CA13A3F00638C0B /* omini */,
 				12FFFCA01C9D41170047D2D7 /* ZYLrcLine.h */,
 				12FFFCA11C9D41170047D2D7 /* ZYLrcLine.m */,
 				12EA22021C9A702A00CB1E0E /* CSocketVC.h */,
@@ -532,17 +685,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1230E7CE1CA0EB2200638C0B /* ArcView.m in Sources */,
 				12FFFC081C9CF47B0047D2D7 /* HT_PlayVC.m in Sources */,
+				1230E7BF1CA0DBC600638C0B /* SmartConfigApply.m in Sources */,
+				1230E7C31CA0DBC600638C0B /* HttpRequest.m in Sources */,
+				1230E7C21CA0DBC600638C0B /* Gateway.m in Sources */,
 				1267AD601C96A46D008B57A5 /* AFHTTPRequestOperation.m in Sources */,
 				12FFFCA21C9D41170047D2D7 /* ZYLrcLine.m in Sources */,
+				1230E7C41CA0DBC600638C0B /* PacketLengthSender.m in Sources */,
 				12EA220A1C9A8A0400CB1E0E /* HT_FPlayRemoteConnect.m in Sources */,
 				1267AD3D1C96A40A008B57A5 /* ViewController.m in Sources */,
 				1267AD821C96AB73008B57A5 /* HT_FPlayManager.m in Sources */,
 				1271F6141C9BB2E400695B1B /* HT_FPlaySongsModel.m in Sources */,
+				1230E7B91CA0DBC600638C0B /* DeviceCommander.m in Sources */,
 				12FFFCCA1C9D41460047D2D7 /* View+MASAdditions.m in Sources */,
 				1267AD611C96A46D008B57A5 /* AFHTTPRequestOperationManager.m in Sources */,
 				1267AD631C96A46D008B57A5 /* AFNetworkReachabilityManager.m in Sources */,
-				12FFFC051C9CE1810047D2D7 /* MBProgressHUD.m in Sources */,
+				1230E7C11CA0DBC600638C0B /* DebugMessage.m in Sources */,
 				1267AD671C96A46D008B57A5 /* AFURLResponseSerialization.m in Sources */,
 				12FFFCC51C9D41460047D2D7 /* MASLayoutConstraint.m in Sources */,
 				12FDD8661C9FC558003ED9B4 /* JSONValueTransformer.m in Sources */,
@@ -550,6 +709,8 @@
 				1271F6171C9BB41D00695B1B /* HT_FPlayResModel.m in Sources */,
 				12FFFCC81C9D41460047D2D7 /* NSArray+MASAdditions.m in Sources */,
 				12E363BF1C99451300A1BCBE /* GCDAsyncSocket.m in Sources */,
+				1230E7C01CA0DBC600638C0B /* BonjourScanner.m in Sources */,
+				1230E7BD1CA0DBC600638C0B /* MIMOSender.m in Sources */,
 				12EA22071C9A877B00CB1E0E /* HT_FPlayNearConnect.m in Sources */,
 				12FDD8631C9FC558003ED9B4 /* JSONHTTPClient.m in Sources */,
 				12FDD8621C9FC558003ED9B4 /* JSONAPI.m in Sources */,
@@ -557,6 +718,7 @@
 				1267AD641C96A46D008B57A5 /* AFSecurityPolicy.m in Sources */,
 				1267AD621C96A46D008B57A5 /* AFHTTPSessionManager.m in Sources */,
 				12E363B71C9944D100A1BCBE /* HT_GetUDPVC.m in Sources */,
+				1230E7C61CA0DBC600638C0B /* SimplePing.m in Sources */,
 				12FFFCC41C9D41460047D2D7 /* MASConstraintMaker.m in Sources */,
 				12E363C01C99451300A1BCBE /* GCDAsyncUdpSocket.m in Sources */,
 				12FDD84F1C9FC4E2003ED9B4 /* JSONModelClassProperty.m in Sources */,
@@ -564,15 +726,22 @@
 				12FDD84D1C9FC4E2003ED9B4 /* JSONModel.m in Sources */,
 				12FFFCC71C9D41460047D2D7 /* MASViewConstraint.m in Sources */,
 				12FDD86C1C9FCDE3003ED9B4 /* HT_SDManagerVC.m in Sources */,
+				1230E7C51CA0DBC600638C0B /* Reachability.m in Sources */,
 				12FFFCC21C9D41460047D2D7 /* MASCompositeConstraint.m in Sources */,
+				1230E74C1CA0D08900638C0B /* BindVC.m in Sources */,
 				12FFFC0B1C9CF8E30047D2D7 /* HT_PlayStatusModel.m in Sources */,
 				12FDD8611C9FC558003ED9B4 /* NSArray+JSONModel.m in Sources */,
 				12FFFCC61C9D41460047D2D7 /* MASViewAttribute.m in Sources */,
 				12FDD8501C9FC4E2003ED9B4 /* JSONModelError.m in Sources */,
+				1230E7BA1CA0DBC600638C0B /* NetServiceInfo.m in Sources */,
 				1271F6111C9B958400695B1B /* HT_remoteControlVC.m in Sources */,
 				12FFFC021C9CD3030047D2D7 /* HT_PlayListtVC.m in Sources */,
 				1267AD681C96A46D008B57A5 /* AFURLSessionManager.m in Sources */,
+				1230E7D11CA1102D00638C0B /* BindVC2.m in Sources */,
+				1230E7CB1CA0E9D800638C0B /* CountDownController.m in Sources */,
+				1230E7941CA0DA9F00638C0B /* OMNIConfig.xcdatamodeld in Sources */,
 				1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */,
+				1230E7BB1CA0DBC600638C0B /* channel_lock.c in Sources */,
 				D820311D1CA02C45003785FD /* HT_ChooseDeviceVC.m in Sources */,
 				1271F61B1C9C01FD00695B1B /* PlayVC.m in Sources */,
 				12FFFCC91C9D41460047D2D7 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
@@ -582,8 +751,12 @@
 				1267AD851C96BE42008B57A5 /* HT_FPlayDevice.m in Sources */,
 				12FDD84E1C9FC4E2003ED9B4 /* JSONModelArray.m in Sources */,
 				12FFFCCB1C9D41460047D2D7 /* ViewController+MASAdditions.m in Sources */,
+				1230E7BE1CA0DBC600638C0B /* SISOSender.m in Sources */,
 				125971EE1C97FCB8001B8E6B /* HT_DetailVC.m in Sources */,
+				1230E7D91CA13A4E00638C0B /* DiscoveryCell.m in Sources */,
 				12FDD8651C9FC558003ED9B4 /* JSONKeyMapper.m in Sources */,
+				1230E7D51CA139BA00638C0B /* DeviceListController.m in Sources */,
+				1230E7BC1CA0DBC600638C0B /* coder.c in Sources */,
 				12EA22041C9A702A00CB1E0E /* CSocketVC.m in Sources */,
 				12FFFCC31C9D41460047D2D7 /* MASConstraint.m in Sources */,
 			);
@@ -702,7 +875,12 @@
 				INFOPLIST_FILE = testWebSocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketssss;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketsssssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -716,7 +894,12 @@
 				INFOPLIST_FILE = testWebSocket/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketssss;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketsssssss;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -743,6 +926,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		1230E7911CA0DA9F00638C0B /* OMNIConfig.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				1230E7921CA0DA9F00638C0B /* OMNIConfig _v2.xcdatamodel */,
+				1230E7931CA0DA9F00638C0B /* OMNIConfig.xcdatamodel */,
+			);
+			currentVersion = 1230E7921CA0DA9F00638C0B /* OMNIConfig _v2.xcdatamodel */;
+			path = OMNIConfig.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 1267AD2A1C96A40A008B57A5 /* Project object */;
 }

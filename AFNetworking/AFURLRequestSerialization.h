@@ -20,6 +20,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+//#ifdef __OBJC__
+//#import <Foundation/Foundation.h>
+//#import <Availability.h>
+//#endif
+
 #import <Foundation/Foundation.h>
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 #import <UIKit/UIKit.h>
