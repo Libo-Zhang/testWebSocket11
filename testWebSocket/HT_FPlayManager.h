@@ -19,7 +19,6 @@
 -(void)getUserdevicegetWithSuccess:(void (^)(NSArray *remoteDeviceArr))success WithFailer:(void (^)(id response))failer WithError:(void (^)(NSError *error))somethingError;
 
 
-
 //设备列表 near
 @property (nonatomic, strong) NSMutableArray *mDeviceList;
 //设备列表remoteDeviceList

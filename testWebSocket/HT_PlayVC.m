@@ -28,6 +28,8 @@
 @property (nonatomic, assign) NSInteger flag;
 @property (nonatomic, assign) NSInteger currentIndex;
 @property (nonatomic, strong) HT_FPlaySongsModel *songModel  ;
+
+@property (nonatomic, assign) float volume;
 @end
 
 @implementation HT_PlayVC
@@ -38,20 +40,30 @@
     [[AVAudioSession sharedInstance] setActive:YES error:&error];
     
     // add event handler, for this example, it is `volumeChange:` method
+    //监听 手机音量键
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(volumeChanged:) name:@"AVSystemController_SystemVolumeDidChangeNotification" object:nil];
     [[UIApplication sharedApplication] beginReceivingRemoteControlEvents];
     
 }
+#pragma mark - 监听 手机音量键
 - (void)volumeChanged:(NSNotification *)notification
 {
     float volume =
     [[[notification userInfo]
       objectForKey:@"AVSystemController_AudioVolumeNotificationParameter"]
      floatValue];
+    self.volume = volume;
+    [self.volumeSlider setValue:volume animated:YES];
+    //[NSThread sleepForTimeInterval:1];
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(volumeForBetter) object:nil];
+    [self performSelector:@selector(volumeForBetter) withObject:nil afterDelay:1.];
     
-    [self.device.connect_near sendMessage:6 WithotherParams:@[@(volume * 100)] WithSongList:nil];
-    NSLog(@"volume %lf",volume * 100);
-    //
+}
+-(void)volumeForBetter{
+   
+    [self.device.connect_near sendMessage:6 WithotherParams:@[@(self.volume * 100)] WithSongList:nil];
+    NSLog(@"volume %lf",self.volume * 100);
+    
     dispatch_queue_t  queue =   dispatch_queue_create("one",DISPATCH_QUEUE_CONCURRENT);
     
     dispatch_async(queue,^{
@@ -65,8 +77,7 @@
         
     });
     
-    NSLog(@"~~~%lf",volume);
-    
+    NSLog(@"~~~%lf",self.volume);
 }
 -(void)dealloc{
     [[UIApplication sharedApplication] endReceivingRemoteControlEvents];
@@ -94,6 +105,7 @@
     [self.volumeSlider addTarget:self action:@selector(volumeChange:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.volumeSlider];
     
+    
     UIButton *playOrPause = [UIButton buttonWithType:UIButtonTypeCustom];
     self.pauseorstartBtn = playOrPause;
     playOrPause.frame = CGRectMake(0, 100, 100, 44);
@@ -108,6 +120,9 @@
     [self.view addSubview:Next];
     [Next addTarget:self action:@selector(next) forControlEvents:UIControlEventTouchUpInside];
      [Next setBackgroundColor:[UIColor redColor]];
+    
+    
+    
     
     UIButton *Last = [UIButton buttonWithType:UIButtonTypeCustom];
     Last.frame = CGRectMake(150, 100, 44, 44);
@@ -132,6 +147,7 @@
     
 }
 -(void)playOrPause:(UIButton *)btn{
+    
     if ([btn.titleLabel.text isEqualToString:@"暂停"]) {
         //发送暂停指令
         [self.device.connect_near sendMessage:2 WithotherParams:nil WithSongList:nil];
@@ -143,14 +159,26 @@
     }
 }
 -(void)next{
-    NSLog(@"next");
     self.lyricArr = nil;
-    [self.lyricTV reloadData];
-    [HT_FPlayManager getInsnstance].songListIndex++;
-    _flag = 0;
     [self.timer setFireDate:[NSDate distantFuture]];
+    [self.lyricTV reloadData];
+    if ([HT_FPlayManager getInsnstance].songListIndex == [HT_FPlayManager getInsnstance].nearSongList.count  ) {//循环什么的在这里设置
+        [HT_FPlayManager getInsnstance].songListIndex = [HT_FPlayManager getInsnstance].nearSongList.count ;
+    }else{
+         [HT_FPlayManager getInsnstance].songListIndex++;
+         NSLog(@"~~~~%ld",[HT_FPlayManager getInsnstance].songListIndex);
+    }
+   
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(nextBetter) object:nil];
+    
+    [self performSelector:@selector(nextBetter) withObject:nil afterDelay:1.];
+    
+}
+-(void)nextBetter{
+    NSLog(@"next");
+    _flag = 0;
     dispatch_queue_t  queue =   dispatch_queue_create("two",DISPATCH_QUEUE_CONCURRENT);
-     [self.device.connect_near sendMessage:9 WithotherParams:@[@([HT_FPlayManager getInsnstance].songListIndex)] WithSongList:nil];
+    [self.device.connect_near sendMessage:9 WithotherParams:@[@([HT_FPlayManager getInsnstance].songListIndex)] WithSongList:nil];
     dispatch_async(queue,^{
         [NSThread sleepForTimeInterval:2];
     });
@@ -159,20 +187,39 @@
         //启动监听
         [self.timer setFireDate:[NSDate distantPast]];
     });
-    
+
 }
 -(void)Last{
     self.lyricArr = nil;
+    [self.timer setFireDate:[NSDate distantFuture]];
     [self.lyricTV reloadData];
-    if ([HT_FPlayManager getInsnstance].songListIndex == 0) {
-        
+    if ([HT_FPlayManager getInsnstance].songListIndex == 0) {//循环什么的在这里设置
+         [HT_FPlayManager getInsnstance].songListIndex = 0;
     }else{
-        
-    [HT_FPlayManager getInsnstance].songListIndex--;
+        [HT_FPlayManager getInsnstance].songListIndex--;
     }
+    [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(nextBetter) object:nil];
+    
+    [self performSelector:@selector(nextBetter) withObject:nil afterDelay:1.];
+    self.lyricArr = nil;
+    [self.lyricTV reloadData];
+
+    
+   // [self.device.connect_near sendMessage:9 WithotherParams:@[@([HT_FPlayManager getInsnstance].songListIndex)] WithSongList:nil];
+   // NSLog(@"last");
+}
+-(void)lastBetter{
     _flag = 0;
+    dispatch_queue_t  queue =   dispatch_queue_create("two",DISPATCH_QUEUE_CONCURRENT);
     [self.device.connect_near sendMessage:9 WithotherParams:@[@([HT_FPlayManager getInsnstance].songListIndex)] WithSongList:nil];
-    NSLog(@"last");
+    dispatch_async(queue,^{
+        [NSThread sleepForTimeInterval:2];
+    });
+    //执行完上面 执行下面的方法
+    dispatch_barrier_async(queue,^{
+        //启动监听
+        [self.timer setFireDate:[NSDate distantPast]];
+    });
 }
 /*
  因为传进来的有些不是json  有些事json 需要判断一下
@@ -192,6 +239,11 @@
         id response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
         if ( [NSJSONSerialization isValidJSONObject:response]) {
             NSLog(@"是json数据");
+            
+            if ([response[@"idx"] integerValue] != [HT_FPlayManager getInsnstance].songListIndex) {//音箱换歌了
+                _flag = 0;
+                [HT_FPlayManager getInsnstance].songListIndex = [response[@"idx"] integerValue];
+            }
             if (_flag == 0) {//第一次  代表歌词没有被加载
                 weakself.songModel = [HT_FPlayManager getInsnstance].nearSongList[[response[@"idx"] integerValue]];
                 if (weakself.songModel.res.count != 0) {
@@ -206,6 +258,7 @@
                         //NSIndexPath *index =  [NSIndexPath indexPathForItem:0 inSection:0];
                     }
                     [weakself.lyricTV reloadData];
+                    
                 }else{
                    // weakself.lyricArr = @[@"没有歌曲源头"];
                     [weakself.lyricTV reloadData];

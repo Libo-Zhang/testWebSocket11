@@ -151,7 +151,6 @@ typedef NS_ENUM(NSInteger, HYBJSONModelDataType) {
     if (model == nil) {
         return nil;
     }
-    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     // 获取类名/根据类名获取类对象
@@ -168,7 +167,7 @@ typedef NS_ENUM(NSInteger, HYBJSONModelDataType) {
         objc_property_t property = properties[i];
         // 取得属性名
         NSString *propertyName = [[NSString alloc] initWithCString:property_getName(property)
-                                                          encoding:NSUTF8StringEncoding];
+                                               encoding:NSUTF8StringEncoding];
         // 取得属性值
         id propertyValue = nil;
         id valueObject = [model valueForKey:propertyName];

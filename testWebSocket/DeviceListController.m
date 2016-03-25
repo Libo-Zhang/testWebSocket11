@@ -9,7 +9,9 @@
 #import "DeviceListController.h"
 #import "BonjourScanner.h"
 #import "libsmartcfg.h"
-#import "DiscoveryCell.h"
+#import "HT_FPlayManager.h"
+#import "HT_FPlayDevice.h"
+#import "HT_FPlayNearConnect.h"
 @interface DeviceListController ()
 @property (nonatomic, strong) BonjourScanner            * bonjourScanner;
 @property (nonatomic, strong) NSMutableArray            * netServiceInfos;
@@ -58,7 +60,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell  "];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"Cell"];
     }
     //NetServiceInfo * aService = [self.netServiceInfos objectAtIndex:indexPath.row];
     [self configureCell:cell atIndexPath:indexPath];
@@ -80,7 +82,8 @@
         deviceImg = [UIImage imageNamed:@"audiobox"];
     }
     setCell.textLabel.text = aService.macAddress;
-    setCell.detailTextLabel.text = aService.macAddress;
+    setCell.detailTextLabel.text = aService.address;
+//    setCell.detailTextLabel.text = aService.macAddress;
     //[setCell configured:aService.isNewAdd];
     
     //ITableViewCell *cell = [];
@@ -88,13 +91,20 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSelector:@selector(deselectIndexPaht:) withObject:indexPath afterDelay:0.2];
+   // [self performSelector:@selector(deselectIndexPaht:) withObject:indexPath afterDelay:0.2];
     NetServiceInfo * chosen = [self.netServiceInfos objectAtIndex:indexPath.row];
-    [_target performSelectorOnMainThread:_action withObject:chosen waitUntilDone:YES];
-}
-
-- (void)deselectIndexPaht:(NSIndexPath*)indexPath {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    HT_FPlayDevice *device = [HT_FPlayDevice new];
+    device.ipAddress = chosen.address;
+    device.devid = chosen.macAddress;
+    [HT_FPlayManager getInsnstance].currentDevice = device;
+    device.connect_near = [HT_FPlayNearConnect new];
+    NSLog(@"```````%@",device.ipAddress);
+   [device.connect_near connectToDevice:device.ipAddress onPort:19211];
+    [self.navigationController popViewControllerAnimated:YES];
+    //[self.navigationController popToRootViewControllerAnimated:YES];
+    //[self dismissViewControllerAnimated:YES completion:nil];
+    NSLog(@"11111");
+    //[_target performSelectorOnMainThread:_action withObject:chosen waitUntilDone:YES];
 }
 
 - (void)onGetNewDevice:(NSNotification *)sender {
@@ -130,7 +140,7 @@
     [self.tableView reloadData];
     bScannedByWifiSetting = YES;
     [_bonjourScanner startScan];
-    //    [_bonjourScanner performSelector:@selector(createFakeDevices) withObject:nil afterDelay:2.0f];
+    //[_bonjourScanner performSelector:@selector(createFakeDevices) withObject:nil afterDelay:2.0f];
 }
 
 - (void)refreshList {

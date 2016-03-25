@@ -27,7 +27,6 @@
 		1230E7CE1CA0EB2200638C0B /* ArcView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7CD1CA0EB2200638C0B /* ArcView.m */; };
 		1230E7D11CA1102D00638C0B /* BindVC2.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D01CA1102D00638C0B /* BindVC2.m */; };
 		1230E7D51CA139BA00638C0B /* DeviceListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D41CA139BA00638C0B /* DeviceListController.m */; };
-		1230E7D91CA13A4E00638C0B /* DiscoveryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */; };
 		125971EE1C97FCB8001B8E6B /* HT_DetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */; };
 		1267AD371C96A40A008B57A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD361C96A40A008B57A5 /* main.m */; };
 		1267AD3A1C96A40A008B57A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1267AD391C96A40A008B57A5 /* AppDelegate.m */; };
@@ -135,8 +134,6 @@
 		1230E7D01CA1102D00638C0B /* BindVC2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindVC2.m; sourceTree = "<group>"; };
 		1230E7D31CA139BA00638C0B /* DeviceListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceListController.h; sourceTree = "<group>"; };
 		1230E7D41CA139BA00638C0B /* DeviceListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceListController.m; sourceTree = "<group>"; };
-		1230E7D71CA13A4E00638C0B /* DiscoveryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoveryCell.h; sourceTree = "<group>"; };
-		1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoveryCell.m; sourceTree = "<group>"; };
 		125971EC1C97FCB8001B8E6B /* HT_DetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HT_DetailVC.h; sourceTree = "<group>"; };
 		125971ED1C97FCB8001B8E6B /* HT_DetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HT_DetailVC.m; sourceTree = "<group>"; };
 		1267AD321C96A40A008B57A5 /* testWebSocket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = testWebSocket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -360,8 +357,6 @@
 				1230E7CD1CA0EB2200638C0B /* ArcView.m */,
 				1230E7D31CA139BA00638C0B /* DeviceListController.h */,
 				1230E7D41CA139BA00638C0B /* DeviceListController.m */,
-				1230E7D71CA13A4E00638C0B /* DiscoveryCell.h */,
-				1230E7D81CA13A4E00638C0B /* DiscoveryCell.m */,
 			);
 			name = omini;
 			sourceTree = "<group>";
@@ -753,7 +748,6 @@
 				12FFFCCB1C9D41460047D2D7 /* ViewController+MASAdditions.m in Sources */,
 				1230E7BE1CA0DBC600638C0B /* SISOSender.m in Sources */,
 				125971EE1C97FCB8001B8E6B /* HT_DetailVC.m in Sources */,
-				1230E7D91CA13A4E00638C0B /* DiscoveryCell.m in Sources */,
 				12FDD8651C9FC558003ED9B4 /* JSONKeyMapper.m in Sources */,
 				1230E7D51CA139BA00638C0B /* DeviceListController.m in Sources */,
 				1230E7BC1CA0DBC600638C0B /* coder.c in Sources */,
@@ -873,14 +867,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/SocketRocket-Prefix.pch";
 				INFOPLIST_FILE = testWebSocket/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketsssssss;
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketszhn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -892,14 +886,14 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(PRODUCT_NAME)/SocketRocket-Prefix.pch";
 				INFOPLIST_FILE = testWebSocket/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				OTHER_LDFLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketsssssss;
+				PRODUCT_BUNDLE_IDENTIFIER = uniview.testWebSocketszhn;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

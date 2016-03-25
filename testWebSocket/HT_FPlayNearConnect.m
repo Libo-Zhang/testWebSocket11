@@ -227,7 +227,7 @@
 //    //    { "to" : "DID:33", "action" : 1, "from" : "UID:83" }
 //    NSData *data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
 //    NSString *dataMessage=[[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
-    NSString *sendMessage = [NSString stringWithFormat:@"%ld#%@",data.length,dataMessage];
+    NSString *sendMessage = [NSString stringWithFormat:@"#%ld#%@",data.length,dataMessage];
     NSData *sendData = [sendMessage dataUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"%@",sendMessage);
     

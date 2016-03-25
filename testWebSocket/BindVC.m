@@ -94,7 +94,7 @@ typedef enum : NSUInteger {
     NSLog(@"onDirectModeButNotSettable");
 }
 -(void)onDirectMode:(NSInteger)remainingTime{
-    
+    NSLog(@"");
 }
 - (void)viewDidLoad {
     bEnterBackground = NO;
@@ -123,9 +123,16 @@ typedef enum : NSUInteger {
     //    }
     
     [self checkConnectMode];
+    
+    
+    //UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"配置" style:UIBarButtonItemStyleDone target:self action:@selector(peizhiClick)];
 
     
     
+}
+-(void)peizhiClick{
+    [self doSmartConfigWithSSID:@"hitinga" WiFiPassword:@"uniview2015"];
 }
 - (void)checkConnectMode {
     isConfigurable = YES;
@@ -147,6 +154,7 @@ typedef enum : NSUInteger {
     
     self.deviceListController = [DeviceListController new];
     [_deviceListController setClickTarget:self action:@selector(didSelectDevice:)];
+    _deviceListController.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:_deviceListController.view];
 
     
@@ -207,7 +215,6 @@ typedef enum : NSUInteger {
                                                                   handler:^(UIAlertAction * action) {
                                                                       [self checkConnectMode];
                                                                   }];
-            
             [alert addAction:defaultAction];
             [self presentViewController:alert animated:YES completion:nil];
         }
@@ -269,36 +276,9 @@ typedef enum : NSUInteger {
 }
 
 - (void)onClickOKOnWiFi:(id)sender {
-//    if (![_currentCustomDialog isKindOfClass:[WiFiSettingController class]]) {
-//        return;
-//    }
-    //WiFiSettingController * controller = (WiFiSettingController*)_currentCustomDialog;
-    
-//    if (!controller.showPWCheckBox.isOn) {
-//        if (![controller.pwField.text isEqualToString:controller.confirmField.text]) {
-//           // [self alertOnlyMessage:NSLocalizedStringFromTable(@"Passphrase and Confirm is not match!", @"wording", nil)];
-//            return;
-//        }
-//    }
-    
-//    if ([controller.ssidField.text length] == 0) {
-//       // [self alertOnlyMessage:NSLocalizedStringFromTable(@"Network name cannot be blank.", @"wording", nil)];
-//        return;
-//    }
-//    
-//    if (controller.savePWCheckBox.isOn) {
-//        self.savedSSIDForDirect = controller.ssidField.text;
-//        self.savedPassword = controller.pwField.text;
-//    } else {
-//        self.savedSSIDForDirect = nil;
-//        self.savedPassword = nil;
-//    }
-    
-    
+
         [self doSmartConfigWithSSID:@"hitinga" WiFiPassword:@"uniview2015"];
-    
-    
-   // [self onClickCloseCurrentDialog:nil];
+ 
 }
 
 

@@ -40,18 +40,61 @@
         }
     }
 }
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    // MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    HT_FPlayDevice *device = [HT_FPlayManager getInsnstance].currentDevice;
+    if (device == nil) {
+        return;
+    }
+    //device.connect_near = [HT_FPlayNearConnect new];
+    // [device.connect_near connectToDevice:@"192.168.0.123" onPort:19211];
+    //[HT_FPlayManager getInsnstance].currentDevice = device;
+    
+    [HT_FPlayManager getInsnstance].nearSongList = [NSMutableArray array];
+    //__weak typeof (self)weakself = self;
+    [device.connect_near sendMessage:201 WithotherParams:@[@(0)] WithSongList:nil];
+    device.connect_near.nearReturnMessageBlock = ^(NSString *message){
+        NSLog(@"message%@",message);
+        
+        NSString *actionStr = [message substringWithRange:NSMakeRange(8, 3)];
+        if ([actionStr isEqualToString:@"202"]) {
+            NSArray *array = [message componentsSeparatedByString:@"songs"];
+            NSString *str = array.lastObject;
+            NSString *str2 = [str substringWithRange:NSMakeRange(1, str.length - 2 )];;
+            NSLog(@"songs %@",str2);
+            NSData *data = [str2 dataUsingEncoding:NSUTF8StringEncoding];
+            NSError *error = nil;
+            id response = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&error];
+            for (NSDictionary *dic in response) {
+                HT_FPlaySongsModel *model = [HT_FPlaySongsModel new];
+                [model setValuesForKeysWithDictionary:dic];
+                NSMutableArray *resmuArr = [NSMutableArray array];
+                HT_FPlayResModel *resModel = [HT_FPlayResModel new];
+                for (NSDictionary *dic in model.res) {
+                    [resModel setValuesForKeysWithDictionary:dic];
+                    [resmuArr addObject:resModel];
+                }
+                model.res = resmuArr;
+                [[HT_FPlayManager getInsnstance].nearSongList addObject:model];
+                //[weakself.songList addObject:model];
+                //[weakself.tableview reloadData];
+                
+            }
+            NSLog(@"%@",error);
+            NSLog(@"%@",response);
+        }
+    };
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     //getUser 放在remoteArr中
-   // MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    HT_FPlayDevice *device = [HT_FPlayDevice new];
-
-    device.connect_near = [HT_FPlayNearConnect new];
-    [device.connect_near connectToDevice:@"192.168.0.123" onPort:19211];
-    [HT_FPlayManager getInsnstance].currentDevice = device;
-   
-    //[self loadSongListData];
+  
+    
+    
+    
 }
 //http://www.mydomain.com/api/userdeviceget
 - (void)didReceiveMemoryWarning {
@@ -69,9 +112,9 @@
     //NSLog(@"%@",[HT_FPlayManager getInsnstance].currentDevice);
     
 //    [device.connect_near sendMessage:401 WithotherParams:nil WithSongList:nil];
-     [device.connect_near sendMessage:403 WithotherParams:@[@(126627449)] WithSongList:nil];
+     [device.connect_near sendMessage:803 WithotherParams:@[@(126627449)] WithSongList:nil];
     device.connect_near.nearReturnMessageBlock = ^(NSString *str){
-        
+        NSLog(@"sssss");
     };
 }
 - (IBAction)playjimian:(id)sender {
@@ -120,7 +163,6 @@
     if (model == nil) {
         return nil;
     }
-    
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     
     // 获取类名/根据类名获取类对象
